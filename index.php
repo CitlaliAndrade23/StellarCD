@@ -1,11 +1,9 @@
 
 <?php
-// Iniciar sesión para reconocer al usuario
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Conexión a la base de datos
 require_once __DIR__ . '/config/conexion.php';
 
 // Obtener los últimos 3 productos disponibles
@@ -23,8 +21,9 @@ $sql = "SELECT
 $consulta = $conexion->query($sql);
 $productos = $consulta->fetchAll();
 
-// Función para mostrar texto de forma segura
-function escapar($texto) {
+// Escapar texto para mostrarlo de forma segura
+function escapar($texto)
+{
     return htmlspecialchars(
         (string) $texto,
         ENT_QUOTES,
@@ -48,25 +47,18 @@ function escapar($texto) {
     <title>Stellar CD | Tu música, tu historia</title>
 
     <link rel="stylesheet"
-          href="assets/css/style.css?v=4">
+          href="assets/css/style.css?v=9">
 
     <script src="assets/js/main.js" defer></script>
 </head>
 
 <body class="pagina-inicio">
 
-<!-- =====================================
-     HEADER COMPARTIDO
-===================================== -->
-
 <?php require __DIR__ . '/includes/header.php'; ?>
-
 
 <main>
 
-    <!-- =====================================
-         HERO PRINCIPAL
-    ===================================== -->
+    <!-- HERO PRINCIPAL -->
 
     <section class="hero">
 
@@ -110,9 +102,7 @@ function escapar($texto) {
     </section>
 
 
-    <!-- =====================================
-         CINTA DECORATIVA
-    ===================================== -->
+    <!-- CINTA DECORATIVA -->
 
     <div class="cinta" aria-hidden="true">
 
@@ -125,9 +115,7 @@ function escapar($texto) {
     </div>
 
 
-    <!-- =====================================
-         SOBRE NOSOTROS
-    ===================================== -->
+    <!-- SOBRE NOSOTROS -->
 
     <section id="nosotros" class="seccion-nosotros">
 
@@ -152,9 +140,7 @@ function escapar($texto) {
     </section>
 
 
-    <!-- =====================================
-         GALERÍA STELLAR CD
-    ===================================== -->
+    <!-- GALERÍA STELLAR CD -->
 
     <section class="seccion-galeria" id="galeria">
 
@@ -365,9 +351,7 @@ function escapar($texto) {
     </section>
 
 
-    <!-- =====================================
-         PRODUCTOS DESTACADOS
-    ===================================== -->
+    <!-- PRODUCTOS DESTACADOS -->
 
     <section class="seccion-destacados">
 
@@ -390,8 +374,6 @@ function escapar($texto) {
 
                 <article class="producto-destacado">
 
-                    <!-- IMAGEN -->
-
                     <div class="producto-visual">
 
                         <?php if (!empty($producto['imagen'])): ?>
@@ -403,9 +385,7 @@ function escapar($texto) {
                                     );
                                 ?>"
                                 alt="<?php
-                                    echo escapar(
-                                        $producto['nombre']
-                                    );
+                                    echo escapar($producto['nombre']);
                                 ?>">
 
                         <?php else: ?>
@@ -420,15 +400,11 @@ function escapar($texto) {
                     </div>
 
 
-                    <!-- INFORMACIÓN -->
-
                     <div class="producto-datos">
 
                         <h3>
                             <?php
-                                echo escapar(
-                                    $producto['nombre']
-                                );
+                                echo escapar($producto['nombre']);
                             ?>
                         </h3>
 
@@ -460,17 +436,13 @@ function escapar($texto) {
 
         <a href="catalogo.php"
            class="enlace-catalogo">
-
             VER TODOS LOS PRODUCTOS ↗
-
         </a>
 
     </section>
 
 
-    <!-- =====================================
-         PERSONALIZACIÓN
-    ===================================== -->
+    <!-- PERSONALIZACIÓN -->
 
     <section class="seccion-personaliza">
 
@@ -489,21 +461,48 @@ function escapar($texto) {
             un llavero que represente tu historia.
         </p>
 
-        <a href="catalogo.php"
+        <a href="personaliza.php"
            class="boton-principal">
-
-            DESCUBRIR OPCIONES ↗
-
+            COMENZAR A PERSONALIZAR ↗
         </a>
+
+    </section>
+
+
+    <!-- UBICACIÓN IADA UACJ -->
+
+    <section class="inicio-ubicacion" id="ubicacion">
+
+        <div class="inicio-ubicacion-texto">
+
+            <span class="etiqueta">
+                FIND THE PLACE / 006
+            </span>
+
+            <h2>
+                ENCUENTRA
+                <span>EL LUGAR. ✳</span>
+            </h2>
+
+            <p>
+                Conoce la ubicación del Instituto de
+                Arquitectura, Diseño y Arte de la
+                Universidad Autónoma de Ciudad Juárez.
+            </p>
+
+            <a href="ubicacion.php"
+               class="boton-principal">
+                VER UBICACIÓN IADA ↗
+            </a>
+
+        </div>
 
     </section>
 
 </main>
 
 
-<!-- =====================================
-     FOOTER
-===================================== -->
+<!-- FOOTER -->
 
 <footer id="contacto" class="site-footer">
 
@@ -523,6 +522,10 @@ function escapar($texto) {
 
         <a href="catalogo.php">
             Catálogo
+        </a>
+
+        <a href="ubicacion.php">
+            Ubicación IADA
         </a>
 
         <a href="admin/login.php">

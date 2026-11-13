@@ -79,8 +79,10 @@ function escaparContacto($valor) {
 
     <title>Contacto | Stellar CD</title>
 
-    <link rel="stylesheet"
-          href="assets/css/style.css?v=7">
+   
+<link rel="stylesheet"
+      href="assets/css/style.css?v=10">
+
 
     <script src="assets/js/main.js" defer></script>
 </head>
@@ -387,21 +389,31 @@ function escaparContacto($valor) {
 
             <!-- FACEBOOK -->
 
-            <article class="contacto-red-tarjeta">
+           
+<!-- FACEBOOK -->
 
-                <span class="red-simbolo">f</span>
+<article class="contacto-red-tarjeta">
 
-                <h3>FACEBOOK</h3>
+    <span class="red-simbolo">f</span>
 
-                <p>
-                    Noticias y actualizaciones.
-                </p>
+    <h3>FACEBOOK</h3>
 
-                <span class="red-pendiente">
-                    PRÓXIMAMENTE ↗
-                </span>
+    <p>
+        Síguenos para descubrir novedades,
+        diseños personalizados y noticias
+        de Stellar CD.
+    </p>
 
-            </article>
+    <a
+        href="https://www.facebook.com/profile.php?id=61596403926010"
+        class="red-enlace"
+        target="_blank"
+        rel="noopener noreferrer">
+        VISITAR FACEBOOK ↗
+    </a>
+
+</article>
+
 
         </div>
 

@@ -19,17 +19,33 @@ $base = '/stellar_cd/';
 
     <nav class="site-nav" aria-label="Navegación principal">
 
-        <a href="<?php echo $base; ?>index.php">INICIO</a>
+        <a href="<?php echo $base; ?>index.php">
+            INICIO
+        </a>
 
-        <a href="<?php echo $base; ?>catalogo.php">CATÁLOGO</a>
+        <a href="<?php echo $base; ?>catalogo.php">
+            CATÁLOGO
+        </a>
 
-        <a href="<?php echo $base; ?>personaliza.php">PERSONALIZA</a>
+        <a href="<?php echo $base; ?>personaliza.php">
+            PERSONALIZA
+        </a>
 
-        <a href="<?php echo $base; ?>nosotros.php">NOSOTROS</a>
+        <a href="<?php echo $base; ?>nosotros.php">
+            NOSOTROS
+        </a>
 
-        <a href="<?php echo $base; ?>contacto.php">CONTACTO</a>
+        <a href="<?php echo $base; ?>contacto.php">
+            CONTACTO
+        </a>
 
-        <a href="<?php echo $base; ?>carrito.php">MI CARRITO</a>
+        <a href="<?php echo $base; ?>ubicacion.php">
+            UBICACIÓN
+        </a>
+
+        <a href="<?php echo $base; ?>carrito.php">
+            MI CARRITO
+        </a>
 
         <?php if (isset($_SESSION['id_usuario'])): ?>
 

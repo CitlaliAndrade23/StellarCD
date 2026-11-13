@@ -2552,3 +2552,391 @@ nav a:hover {
     opacity: 0.75;
     cursor: wait;
 }
+
+
+/* MODAL DE PERSONALIZACIÓN */
+
+.modal-personaliza[hidden],
+.modal-personaliza [hidden] {
+    display: none !important;
+}
+
+.modal-personaliza {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.modal-personaliza-contenido {
+    position: relative;
+    background: #ffffff;
+    color: #111111;
+    width: 100%;
+    max-width: 850px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 35px;
+    border-radius: 12px;
+}
+
+.cerrar-modal-personaliza {
+    position: absolute;
+    top: 12px;
+    right: 18px;
+    background: none;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.modal-personaliza-contenido h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.resumen-personaliza {
+    margin: 20px 0;
+}
+
+.resumen-personaliza p {
+    margin-bottom: 8px;
+}
+
+.modal-imagenes-personaliza {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.modal-imagenes-personaliza h3 {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.modal-imagenes-personaliza img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 8px;
+    background: #eeeeee;
+}
+
+#resumenCD {
+    border-radius: 50%;
+    aspect-ratio: 1;
+    object-fit: cover;
+}
+
+.modal-acciones-personaliza {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.modal-acciones-personaliza button {
+    flex: 1;
+    padding: 15px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#editarPersonaliza {
+    background: #eeeeee;
+    color: #111111;
+}
+
+#confirmarPersonaliza {
+    background: #111111;
+    color: #ffffff;
+}
+
+#mensajePersonaliza {
+    margin-top: 15px;
+}
+
+@media (max-width: 600px) {
+    .modal-imagenes-personaliza {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-personaliza-contenido {
+        padding: 25px 18px;
+    }
+
+    .modal-acciones-personaliza {
+        flex-direction: column;
+    }
+}
+
+
+/* CD CIRCULAR EN MODAL DE PERSONALIZACIÓN */
+
+.modal-personaliza #resumenCD {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    height: auto;
+    border-radius: 50%;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+
+/* PÁGINA DE GEOLOCALIZACIÓN */
+
+.ubicacion-pagina {
+    min-height: 75vh;
+}
+
+.ubicacion-hero {
+    padding: 85px 8%;
+    background: #f6dce3;
+}
+
+.ubicacion-hero h1 {
+    font-size: clamp(42px, 7vw, 90px);
+    line-height: 1;
+    margin: 25px 0;
+    font-weight: 900;
+    color: #111;
+}
+
+.ubicacion-hero h1 span {
+    display: block;
+    color: #ed759b;
+    -webkit-text-stroke: 1px #111;
+}
+
+.ubicacion-hero p {
+    max-width: 540px;
+    line-height: 1.7;
+}
+
+.ubicacion-contenido {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 35px;
+    padding: 70px 8%;
+    align-items: stretch;
+}
+
+.ubicacion-informacion {
+    padding: 35px;
+    background: #f5f5f5;
+    border: 1px solid #111;
+}
+
+.ubicacion-informacion h2 {
+    font-size: 48px;
+    margin: 25px 0;
+}
+
+.ubicacion-informacion h2 span {
+    color: #ed759b;
+}
+
+.ubicacion-informacion h3 {
+    margin-top: 30px;
+    font-size: 14px;
+}
+
+.ubicacion-informacion p {
+    line-height: 1.7;
+}
+
+.ubicacion-boton {
+    display: block;
+    width: 100%;
+    margin-top: 25px;
+    padding: 16px;
+    background: #111;
+    color: white;
+    border: 1px solid #111;
+    text-decoration: none;
+    text-align: center;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.ubicacion-boton:hover {
+    background: #ed759b;
+    color: #111;
+}
+
+.ubicacion-secundario {
+    background: white;
+    color: #111;
+    margin-top: 12px;
+}
+
+#estadoUbicacion {
+    font-size: 13px;
+    margin-top: 15px;
+}
+
+.ubicacion-mapa {
+    min-height: 450px;
+    border: 1px solid #111;
+    overflow: hidden;
+}
+
+.ubicacion-mapa iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 450px;
+}
+
+@media (max-width: 768px) {
+    .ubicacion-hero {
+        padding: 65px 6%;
+    }
+
+    .ubicacion-contenido {
+        grid-template-columns: 1fr;
+        padding: 40px 6%;
+    }
+
+    .ubicacion-informacion {
+        padding: 25px;
+    }
+
+    .ubicacion-informacion h2 {
+        font-size: 38px;
+    }
+}
+
+
+/* CORRECCIONES DE GEOLOCALIZACIÓN */
+
+.ubicacion-hero .etiqueta {
+    color: #333333;
+}
+
+.ubicacion-hero p {
+    color: #333333;
+}
+
+.ubicacion-informacion {
+    background: #f5f5f5;
+    color: #111111;
+}
+
+.ubicacion-informacion .etiqueta {
+    color: #555555;
+}
+
+.ubicacion-informacion h2 {
+    color: #111111;
+}
+
+.ubicacion-informacion h2 span {
+    color: #ed759b;
+}
+
+.ubicacion-informacion h3 {
+    color: #111111;
+}
+
+.ubicacion-informacion p {
+    color: #333333;
+}
+
+#estadoUbicacion {
+    color: #555555;
+}
+
+.ubicacion-informacion .ubicacion-boton {
+    color: #ffffff;
+}
+
+.ubicacion-informacion .ubicacion-secundario {
+    color: #111111;
+}
+
+
+
+/* UBICACIÓN EN LA PÁGINA PRINCIPAL */
+
+.inicio-ubicacion {
+    background: #f6dce3;
+    padding: 85px 8%;
+    color: #111111;
+}
+
+.inicio-ubicacion-texto {
+    max-width: 800px;
+}
+
+.inicio-ubicacion .etiqueta {
+    color: #333333;
+}
+
+.inicio-ubicacion h2 {
+    font-size: clamp(38px, 6vw, 75px);
+    font-weight: 900;
+    line-height: 1.05;
+    margin: 25px 0;
+    color: #111111;
+}
+
+.inicio-ubicacion h2 span {
+    color: #ed759b;
+    -webkit-text-stroke: 1px #111111;
+}
+
+.inicio-ubicacion p {
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 30px;
+    color: #333333;
+}
+
+@media (max-width: 768px) {
+    .inicio-ubicacion {
+        padding: 60px 6%;
+    }
+}
+
+
+/* ==========================================
+   STELLAR CD - ENLACE FACEBOOK
+========================================== */
+
+.red-enlace {
+    display: inline-block;
+    margin-top: 15px;
+    padding-bottom: 5px;
+
+    color: #252044;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-decoration: none;
+
+    border-bottom: 2px solid #252044;
+
+    transition: 
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.red-enlace:hover {
+    color: #FFF8F5;
+    border-color: #FFF8F5;
+    transform: translateY(-3px);
+}
+
+.red-enlace:focus-visible {
+    outline: 3px solid #252044;
+    outline-offset: 5px;
+}

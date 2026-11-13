@@ -1,0 +1,25 @@
+
+# Variables de entorno
+.env
+.env.*
+!.env.example
+
+# Dependencias
+/vendor/
+/node_modules/
+
+# Archivos temporales
+*.log
+.DS_Store
+Thumbs.db
+
+# Configuracion de editores
+.vscode/
+.idea/
+
+# Bases de datos
+*.sql
+!database/schema.sql
+
+# Imagenes y archivos subidos por usuarios
+/uploads/
