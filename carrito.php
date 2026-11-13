@@ -100,7 +100,7 @@ function escaparCarrito($valor) {
 
     <title>Mi carrito | Stellar CD</title>
 
-    <!-- TOKEN CSRF PARA JAVASCRIPT -->
+    <!-- TOKEN CSRF -->
     <meta name="csrf-carrito"
           content="<?php echo escaparCarrito(
               $_SESSION['csrf_carrito']
@@ -112,9 +112,7 @@ function escaparCarrito($valor) {
 
     <style>
 
-        /* =====================================
-           CONTENEDOR GENERAL
-        ===================================== */
+        /* CONTENEDOR GENERAL */
 
         .carrito-contenedor {
             max-width: 1100px;
@@ -136,9 +134,7 @@ function escaparCarrito($valor) {
             margin-bottom: 35px;
         }
 
-        /* =====================================
-           TABLA DE PRODUCTOS
-        ===================================== */
+        /* TABLA DE PRODUCTOS */
 
         .carrito-tabla {
             width: 100%;
@@ -165,9 +161,7 @@ function escaparCarrito($valor) {
             vertical-align: middle;
         }
 
-        /* =====================================
-           INFORMACIÓN DEL PRODUCTO
-        ===================================== */
+        /* INFORMACIÓN DEL PRODUCTO */
 
         .carrito-producto {
             display: flex;
@@ -196,9 +190,7 @@ function escaparCarrito($valor) {
             font-weight: bold;
         }
 
-        /* =====================================
-           BOTONES DE CANTIDAD
-        ===================================== */
+        /* BOTONES DE CANTIDAD */
 
         .carrito-cantidad {
             display: flex;
@@ -220,9 +212,7 @@ function escaparCarrito($valor) {
             color: #151522;
         }
 
-        /* =====================================
-           BOTÓN ELIMINAR
-        ===================================== */
+        /* BOTÓN ELIMINAR */
 
         .carrito-eliminar {
             background: #542c42;
@@ -237,9 +227,7 @@ function escaparCarrito($valor) {
             background: #74344f;
         }
 
-        /* =====================================
-           RESUMEN DEL PEDIDO
-        ===================================== */
+        /* RESUMEN DEL PEDIDO */
 
         .carrito-resumen {
             background: #23233a;
@@ -267,9 +255,7 @@ function escaparCarrito($valor) {
             color: #ff5b99;
         }
 
-        /* =====================================
-           CONFIRMAR PEDIDO
-        ===================================== */
+        /* CONFIRMAR PEDIDO */
 
         .carrito-finalizar {
             display: block;
@@ -282,6 +268,11 @@ function escaparCarrito($valor) {
             border-radius: 8px;
             font-weight: bold;
             cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .carrito-finalizar:hover {
+            background: #ff82ae;
         }
 
         .carrito-finalizar:disabled {
@@ -289,9 +280,7 @@ function escaparCarrito($valor) {
             cursor: not-allowed;
         }
 
-        /* =====================================
-           CARRITO VACÍO
-        ===================================== */
+        /* CARRITO VACÍO */
 
         .carrito-vacio {
             background: #23233a;
@@ -307,18 +296,18 @@ function escaparCarrito($valor) {
             margin-top: 25px;
         }
 
-        /* =====================================
-           MENSAJES DE ERROR
-        ===================================== */
+        .carrito-volver:hover {
+            text-decoration: underline;
+        }
+
+        /* MENSAJES */
 
         .carrito-error {
             color: #ffb4cc;
             margin-top: 15px;
         }
 
-        /* =====================================
-           RESPONSIVE
-        ===================================== */
+        /* RESPONSIVE */
 
         @media (max-width: 768px) {
 
@@ -334,7 +323,7 @@ function escaparCarrito($valor) {
     </style>
 
     <!-- JAVASCRIPT DEL CARRITO -->
-    <script src="assets/js/carrito.js?v=2" defer></script>
+   <script src="assets/js/carrito.js?v=4" defer></script>
 
 </head>
 
@@ -541,13 +530,13 @@ function escaparCarrito($valor) {
 
             </div>
 
-            <!-- SE ACTIVARÁ AL IMPLEMENTAR PEDIDOS -->
+            <!-- CONFIRMAR PEDIDO -->
 
             <button
                 type="button"
-                class="carrito-finalizar"
-                disabled>
-                CONFIRMAR PEDIDO (PRÓXIMAMENTE)
+                id="btnConfirmarPedido"
+                class="carrito-finalizar">
+                CONFIRMAR PEDIDO
             </button>
 
             <p

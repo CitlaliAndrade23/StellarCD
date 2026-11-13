@@ -5,8 +5,21 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Ruta base del proyecto
-$base = '/stellar_cd/';
+// Detectar el entorno del proyecto
+$servidor = $_SERVER['HTTP_HOST'] ?? '';
+
+if (
+    $servidor === 'localhost' ||
+    $servidor === '127.0.0.1' ||
+    str_starts_with($servidor, 'localhost:') ||
+    str_starts_with($servidor, '127.0.0.1:')
+) {
+    // XAMPP
+    $base = '/stellar_cd/';
+} else {
+    // InfinityFree
+    $base = '/';
+}
 ?>
 
 <header class="site-header">

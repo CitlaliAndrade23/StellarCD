@@ -23,3 +23,7 @@ Thumbs.db
 
 # Imagenes y archivos subidos por usuarios
 /uploads/
+
+
+# Configuracion privada del hosting
+/config/conexion.infinityfree.php

@@ -6,15 +6,39 @@ document.addEventListener('DOMContentLoaded', () => {
     // =====================================
 
     const mensaje = document.getElementById('carritoMensaje');
+    const btnConfirmar = document.getElementById('btnConfirmarPedido');
 
     const tokenCSRF = document.querySelector(
         'meta[name="csrf-carrito"]'
     )?.content;
 
+    // Detectar XAMPP o InfinityFree
+    const esLocal = ['localhost', '127.0.0.1'].includes(
+        window.location.hostname
+    );
+
+    const rutaBase = esLocal ? '/stellar_cd/' : '/';
+
     let procesando = false;
 
     // =====================================
-    // 2. FUNCIÓN PARA MODIFICAR EL CARRITO
+    // 2. MOSTRAR MENSAJES
+    // =====================================
+
+    function mostrarMensaje(texto, esError = true) {
+
+        if (mensaje) {
+            mensaje.textContent = texto;
+            mensaje.style.color = esError
+                ? '#ffb4cc'
+                : '#a8f0c6';
+        } else if (texto) {
+            alert(texto);
+        }
+    }
+
+    // =====================================
+    // 3. MODIFICAR CARRITO
     // =====================================
 
     async function modificarCarrito(accion, idDetalle) {
@@ -22,27 +46,28 @@ document.addEventListener('DOMContentLoaded', () => {
         if (procesando) return;
 
         if (!tokenCSRF) {
-            mostrarError('No se encontró el token de seguridad.');
+            mostrarMensaje('No se encontró el token de seguridad.');
+            return;
+        }
+
+        if (!Number.isInteger(idDetalle) || idDetalle <= 0) {
+            mostrarMensaje('El producto seleccionado no es válido.');
             return;
         }
 
         procesando = true;
-
-        if (mensaje) {
-            mensaje.textContent = '';
-        }
+        mostrarMensaje('');
 
         try {
 
             const respuesta = await fetch(
-                '/stellar_cd/api/carrito.php',
+                `${rutaBase}api/carrito.php`,
                 {
                     method: 'POST',
-
                     headers: {
                         'Content-Type': 'application/json'
                     },
-
+                    credentials: 'same-origin',
                     body: JSON.stringify({
                         accion: accion,
                         id_detalle_carrito: idDetalle,
@@ -54,16 +79,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const datos = await respuesta.json();
 
             if (!respuesta.ok || !datos.exito) {
-
                 throw new Error(
                     datos.mensaje ||
                     'No se pudo modificar el carrito.'
                 );
             }
-
-            // =====================================
-            // 3. ACTUALIZAR CANTIDADES Y TOTAL
-            // =====================================
 
             window.location.reload();
 
@@ -71,27 +91,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             console.error('Error en el carrito:', error);
 
-            mostrarError(error.message);
+            mostrarMensaje(error.message);
 
             procesando = false;
         }
     }
 
     // =====================================
-    // 4. MOSTRAR ERRORES
-    // =====================================
-
-    function mostrarError(texto) {
-
-        if (mensaje) {
-            mensaje.textContent = texto;
-        } else {
-            alert(texto);
-        }
-    }
-
-    // =====================================
-    // 5. BOTONES PARA SUMAR CANTIDAD
+    // 4. SUMAR PRODUCTOS
     // =====================================
 
     document.querySelectorAll('.btn-sumar').forEach(boton => {
@@ -107,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // =====================================
-    // 6. BOTONES PARA RESTAR CANTIDAD
+    // 5. RESTAR PRODUCTOS
     // =====================================
 
     document.querySelectorAll('.btn-restar').forEach(boton => {
@@ -123,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // =====================================
-    // 7. BOTONES PARA ELIMINAR PRODUCTOS
+    // 6. ELIMINAR PRODUCTOS
     // =====================================
 
     document.querySelectorAll('.carrito-eliminar').forEach(boton => {
@@ -134,9 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 '¿Seguro que deseas eliminar este producto del carrito?'
             );
 
-            if (!confirmar) {
-                return;
-            }
+            if (!confirmar) return;
 
             modificarCarrito(
                 'eliminar',
@@ -145,5 +150,84 @@ document.addEventListener('DOMContentLoaded', () => {
 
         });
     });
+
+    // =====================================
+    // 7. CONFIRMAR PEDIDO
+    // =====================================
+
+    if (btnConfirmar) {
+
+        btnConfirmar.addEventListener('click', async () => {
+
+            if (procesando) return;
+
+            if (!tokenCSRF) {
+                mostrarMensaje('No se encontró el token de seguridad.');
+                return;
+            }
+
+            const confirmar = confirm(
+                '¿Deseas confirmar tu pedido de StellarCD?'
+            );
+
+            if (!confirmar) return;
+
+            procesando = true;
+
+            btnConfirmar.disabled = true;
+            btnConfirmar.textContent = 'PROCESANDO PEDIDO...';
+
+            mostrarMensaje('');
+
+            try {
+
+                const respuesta = await fetch(
+                    `${rutaBase}api/confirmar_pedido.php`,
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        credentials: 'same-origin',
+                        body: JSON.stringify({
+                            csrf_token: tokenCSRF
+                        })
+                    }
+                );
+
+                const datos = await respuesta.json();
+
+                if (!respuesta.ok || !datos.exito) {
+                    throw new Error(
+                        datos.mensaje ||
+                        'No se pudo confirmar el pedido.'
+                    );
+                }
+
+                mostrarMensaje(
+                    `¡Pedido #${datos.id_pedido} registrado correctamente!`,
+                    false
+                );
+
+                btnConfirmar.textContent = 'PEDIDO REGISTRADO';
+
+                setTimeout(() => {
+                    window.location.reload();
+                }, 2000);
+
+            } catch (error) {
+
+                console.error('Error al confirmar pedido:', error);
+
+                mostrarMensaje(error.message);
+
+                btnConfirmar.disabled = false;
+                btnConfirmar.textContent = 'CONFIRMAR PEDIDO';
+
+                procesando = false;
+            }
+
+        });
+    }
 
 });
