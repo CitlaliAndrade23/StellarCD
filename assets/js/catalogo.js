@@ -5,85 +5,119 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!contenedor) return;
 
-   
-async function agregarAlCarrito(idProducto, boton) {
+    // =====================================
+    // 1. DETECTAR ENTORNO
+    // =====================================
 
-    const textoOriginal = boton.textContent;
+    const esLocal = ['localhost', '127.0.0.1'].includes(
+        window.location.hostname
+    );
 
-    const tokenCSRF = document.querySelector(
-        'meta[name="csrf-carrito"]'
-    )?.content;
+    const rutaBase = esLocal ? '/stellar_cd/' : '/';
 
-    if (!tokenCSRF) {
-        alert('No se encontró el token de seguridad.');
-        return;
-    }
+    // =====================================
+    // 2. AGREGAR PRODUCTOS AL CARRITO
+    // =====================================
 
-    boton.disabled = true;
-    boton.textContent = 'AGREGANDO...';
+    async function agregarAlCarrito(idProducto, boton) {
 
-    try {
+        const textoOriginal = boton.textContent;
 
-        const respuesta = await fetch(
-            '/stellar_cd/api/carrito.php',
-            {
-                method: 'POST',
+        const tokenCSRF = document.querySelector(
+            'meta[name="csrf-carrito"]'
+        )?.content;
 
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-
-                body: JSON.stringify({
-                    accion: 'agregar',
-                    id_producto: idProducto,
-                    cantidad: 1,
-                    csrf_token: tokenCSRF
-                })
-            }
-        );
-
-        const datos = await respuesta.json();
-
-        if (!respuesta.ok || !datos.exito) {
-            throw new Error(
-                datos.mensaje ||
-                'No se pudo agregar el producto.'
-            );
+        if (!tokenCSRF) {
+            alert('No se encontró el token de seguridad.');
+            return;
         }
 
-        boton.textContent = '✓ AGREGADO';
+        boton.disabled = true;
+        boton.textContent = 'AGREGANDO...';
 
-        setTimeout(() => {
+        try {
+
+            const respuesta = await fetch(
+                `${rutaBase}api/carrito.php`,
+                {
+                    method: 'POST',
+
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+
+                    credentials: 'same-origin',
+
+                    body: JSON.stringify({
+                        accion: 'agregar',
+                        id_producto: idProducto,
+                        cantidad: 1,
+                        csrf_token: tokenCSRF
+                    })
+                }
+            );
+
+            const datos = await respuesta.json();
+
+            if (!respuesta.ok || !datos.exito) {
+                throw new Error(
+                    datos.mensaje ||
+                    'No se pudo agregar el producto.'
+                );
+            }
+
+            boton.textContent = '✓ AGREGADO';
+
+            setTimeout(() => {
+                boton.textContent = textoOriginal;
+                boton.disabled = false;
+            }, 1500);
+
+        } catch (error) {
+
+            console.error('Error al agregar producto:', error);
+
+            alert(error.message);
+
             boton.textContent = textoOriginal;
             boton.disabled = false;
-        }, 1500);
-
-    } catch (error) {
-
-        console.error('Error al agregar producto:', error);
-
-        alert(error.message);
-
-        boton.textContent = textoOriginal;
-        boton.disabled = false;
+        }
     }
-}
+
+    // =====================================
+    // 3. CARGAR PRODUCTOS
+    // =====================================
 
     async function cargarProductos() {
 
         try {
+
             const respuesta = await fetch(
-                '/stellar_cd/api/productos.php'
+                `${rutaBase}api/productos.php`,
+                {
+                    credentials: 'same-origin'
+                }
             );
 
             if (!respuesta.ok) {
-                throw new Error('Error al consultar la API');
+                throw new Error(
+                    'Error al consultar la API de productos.'
+                );
             }
 
             const datos = await respuesta.json();
 
             if (!datos.exito) {
-                throw new Error('La API devolvió un error');
+                throw new Error(
+                    datos.mensaje ||
+                    'La API devolvió un error.'
+                );
+            }
+
+            if (!Array.isArray(datos.productos)) {
+                throw new Error(
+                    'La respuesta de productos no es válida.'
+                );
             }
 
             contenedor.replaceChildren();
@@ -105,6 +139,7 @@ async function agregarAlCarrito(idProducto, boton) {
                 if (producto.imagen) {
 
                     const imagen = document.createElement('img');
+
                     imagen.src = producto.imagen;
                     imagen.alt = producto.nombre;
 
@@ -128,13 +163,15 @@ async function agregarAlCarrito(idProducto, boton) {
                 nombre.textContent = producto.nombre;
 
                 const descripcion = document.createElement('p');
-                descripcion.textContent = producto.descripcion ?? '';
+                descripcion.textContent =
+                    producto.descripcion ?? '';
 
                 const precio = document.createElement('strong');
                 precio.textContent =
                     '$' + Number(producto.precio).toFixed(2) + ' MXN';
 
                 // BOTÓN AGREGAR AL CARRITO
+
                 const botonCarrito = document.createElement('button');
 
                 botonCarrito.type = 'button';
@@ -142,6 +179,7 @@ async function agregarAlCarrito(idProducto, boton) {
                 botonCarrito.textContent = '🛒 AGREGAR AL CARRITO';
 
                 botonCarrito.addEventListener('click', () => {
+
                     agregarAlCarrito(
                         Number(producto.id_producto),
                         botonCarrito
@@ -166,12 +204,17 @@ async function agregarAlCarrito(idProducto, boton) {
 
         } catch (error) {
 
-            console.error(error);
+            console.error('Error al cargar productos:', error);
 
             contenedor.textContent =
                 'No se pudieron cargar los productos.';
         }
     }
 
+    // =====================================
+    // 4. INICIAR CATÁLOGO
+    // =====================================
+
     cargarProductos();
+
 });

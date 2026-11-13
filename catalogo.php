@@ -36,7 +36,7 @@ if (empty($_SESSION['csrf_carrito'])) {
 
     <!-- JAVASCRIPT -->
     <script src="assets/js/main.js" defer></script>
-    <script src="assets/js/catalogo.js?v=3" defer></script>
+    <script src="assets/js/catalogo.js?v=4" defer></script>
 
 </head>
 

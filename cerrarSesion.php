@@ -10,24 +10,37 @@ $_SESSION = [];
 
 // Eliminar la cookie de sesión
 if (ini_get('session.use_cookies')) {
-
     $parametros = session_get_cookie_params();
 
     setcookie(
         session_name(),
         '',
-        time() - 42000,
-        $parametros['path'],
-        $parametros['domain'],
-        $parametros['secure'],
-        $parametros['httponly']
+        [
+            'expires' => time() - 42000,
+            'path' => $parametros['path'],
+            'domain' => $parametros['domain'],
+            'secure' => $parametros['secure'],
+            'httponly' => $parametros['httponly'],
+            'samesite' => $parametros['samesite'] ?? 'Lax'
+        ]
     );
 }
 
 // Destruir la sesión
 session_destroy();
 
-// Regresar a la página principal
-header('Location: /stellar_cd/index.php');
+// Detectar si estamos en XAMPP o InfinityFree
+$servidor = $_SERVER['HTTP_HOST'] ?? '';
+
+$esLocal = in_array(
+    explode(':', $servidor)[0],
+    ['localhost', '127.0.0.1'],
+    true
+);
+
+$rutaBase = $esLocal ? '/stellar_cd/' : '/';
+
+// Redirigir a la página principal
+header('Location: ' . $rutaBase . 'index.php');
 exit;
 ?>
