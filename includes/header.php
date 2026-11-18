@@ -36,25 +36,81 @@ if (
             INICIO
         </a>
 
+<!-- MENÚ DESPLEGABLE DE PRODUCTOS -->
+<details class="nav-dropdown">
+
+    <summary>
+        PRODUCTOS
+        <span class="dropdown-flecha" aria-hidden="true">▾</span>
+    </summary>
+
+    <div class="dropdown-menu">
+
         <a href="<?php echo $base; ?>catalogo.php">
-            CATÁLOGO
+            <span class="dropdown-icono">💿</span>
+
+            <span class="dropdown-texto">
+                <strong>CATÁLOGO</strong>
+                <small>Diseños predeterminados</small>
+            </span>
         </a>
 
         <a href="<?php echo $base; ?>personaliza.php">
-            PERSONALIZA
+            <span class="dropdown-icono">✦</span>
+
+            <span class="dropdown-texto">
+                <strong>PERSONALIZA</strong>
+                <small>Crea tu propio diseño</small>
+            </span>
         </a>
 
+    </div>
+
+</details>
+
+
+       
+<!-- MENÚ DESPLEGABLE DE INFORMACIÓN -->
+<details class="nav-dropdown">
+
+    <summary>
+        INFORMACIÓN
+        <span class="dropdown-flecha" aria-hidden="true">▾</span>
+    </summary>
+
+    <div class="dropdown-menu">
+
         <a href="<?php echo $base; ?>nosotros.php">
-            NOSOTROS
+            <span class="dropdown-icono">✦</span>
+
+            <span class="dropdown-texto">
+                <strong>NOSOTROS</strong>
+                <small>Conoce nuestra historia</small>
+            </span>
         </a>
 
         <a href="<?php echo $base; ?>contacto.php">
-            CONTACTO
+            <span class="dropdown-icono">✉</span>
+
+            <span class="dropdown-texto">
+                <strong>CONTACTO</strong>
+                <small>Comunícate con nosotros</small>
+            </span>
         </a>
 
         <a href="<?php echo $base; ?>ubicacion.php">
-            UBICACIÓN
+            <span class="dropdown-icono">⌖</span>
+
+            <span class="dropdown-texto">
+                <strong>UBICACIÓN</strong>
+                <small>Encuentra dónde estamos</small>
+            </span>
         </a>
+
+    </div>
+
+</details>
+
 
         <a href="<?php echo $base; ?>carrito.php">
             MI CARRITO

@@ -32,7 +32,7 @@ if (empty($_SESSION['csrf_carrito'])) {
 
     <!-- ESTILOS -->
     <link rel="stylesheet"
-          href="assets/css/style.css?v=4">
+          href="assets/css/style.css?v=5">
 
     <!-- JAVASCRIPT -->
     <script src="assets/js/main.js" defer></script>
@@ -62,6 +62,7 @@ if (empty($_SESSION['csrf_carrito'])) {
     </section>
 
 </main>
+<?php require __DIR__ . '/includes/footer.php'; ?>
 
 </body>
 </html>

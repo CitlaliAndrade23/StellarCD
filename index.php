@@ -47,7 +47,7 @@ function escapar($texto)
     <title>Stellar CD | Tu música, tu historia</title>
 
     <link rel="stylesheet"
-          href="assets/css/style.css?v=9">
+          href="assets/css/style.css?v=10">
 
     <script src="assets/js/main.js" defer></script>
 </head>
@@ -502,43 +502,7 @@ function escapar($texto)
 </main>
 
 
-<!-- FOOTER -->
-
-<footer id="contacto" class="site-footer">
-
-    <div>
-
-        <h2>
-            STELLAR CD ✳
-        </h2>
-
-        <p>
-            Mini CD, maxi recuerdos.
-        </p>
-
-    </div>
-
-    <div class="footer-links">
-
-        <a href="catalogo.php">
-            Catálogo
-        </a>
-
-        <a href="ubicacion.php">
-            Ubicación IADA
-        </a>
-
-        <a href="admin/login.php">
-            Administrador
-        </a>
-
-    </div>
-
-    <p class="copyright">
-        © <?php echo date('Y'); ?> Stellar CD.
-    </p>
-
-</footer>
+<?php require __DIR__ . '/includes/footer.php'; ?>
 
 </body>
 </html>

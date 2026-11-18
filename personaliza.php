@@ -21,7 +21,7 @@ if (empty($_SESSION['csrf_personaliza'])) {
     <title>Personaliza | Stellar CD</title>
 
     <link rel="stylesheet"
-         href="assets/css/style.css?v=6">
+         href="assets/css/style.css?v=7">
 
     <script src="assets/js/main.js" defer></script>
     <script src="assets/js/personaliza.js?v=1" defer></script>
@@ -351,20 +351,7 @@ if (empty($_SESSION['csrf_personaliza'])) {
 
 </main>
 
-
-<!-- FOOTER -->
-<footer class="site-footer">
-
-    <div>
-        <h2>STELLAR CD ✳</h2>
-        <p>Mini CD, maxi recuerdos.</p>
-    </div>
-
-    <p class="copyright">
-        © <?php echo date('Y'); ?> Stellar CD.
-    </p>
-
-</footer>
+<?php require __DIR__ . '/includes/footer.php'; ?>
 
 </body>
 </html>

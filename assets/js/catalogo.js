@@ -16,7 +16,67 @@ document.addEventListener('DOMContentLoaded', () => {
     const rutaBase = esLocal ? '/stellar_cd/' : '/';
 
     // =====================================
-    // 2. AGREGAR PRODUCTOS AL CARRITO
+    // 2. CORREGIR RUTAS DE IMÁGENES
+    // =====================================
+
+    function obtenerUrlImagen(ruta) {
+
+        if (!ruta || typeof ruta !== 'string') {
+            return null;
+        }
+
+        const rutaOriginal = ruta.trim();
+
+        if (!rutaOriginal) {
+            return null;
+        }
+
+        // Permitir imágenes externas HTTPS
+        if (/^https:\/\//i.test(rutaOriginal)) {
+            return rutaOriginal;
+        }
+
+        // Rechazar otros esquemas y URLs externas no permitidas
+        if (
+            /^[a-z][a-z0-9+.-]*:/i.test(rutaOriginal) ||
+            rutaOriginal.startsWith('//')
+        ) {
+            return null;
+        }
+
+        // Eliminar parámetros antes de normalizar
+        const rutaSinDominio = rutaOriginal
+            .replace(/^\/+/, '')
+            .replace(/^stellar_cd\//i, '');
+
+        // Las imágenes locales deben estar en assets/img
+        if (
+            !rutaSinDominio.startsWith('assets/img/') ||
+            rutaSinDominio.split('/').includes('..')
+        ) {
+            return null;
+        }
+
+        return rutaBase + rutaSinDominio;
+    }
+
+    // =====================================
+    // 3. MOSTRAR ÍCONO SI NO HAY IMAGEN
+    // =====================================
+
+    function mostrarImagenAlternativa(contenedorImagen) {
+
+        contenedorImagen.replaceChildren();
+
+        const icono = document.createElement('span');
+        icono.textContent = '✦';
+        icono.setAttribute('aria-hidden', 'true');
+
+        contenedorImagen.appendChild(icono);
+    }
+
+    // =====================================
+    // 4. AGREGAR PRODUCTOS AL CARRITO
     // =====================================
 
     async function agregarAlCarrito(idProducto, boton) {
@@ -85,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =====================================
-    // 3. CARGAR PRODUCTOS
+    // 5. CARGAR PRODUCTOS DESDE LA API
     // =====================================
 
     async function cargarProductos() {
@@ -95,7 +155,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const respuesta = await fetch(
                 `${rutaBase}api/productos.php`,
                 {
-                    credentials: 'same-origin'
+                    credentials: 'same-origin',
+                    cache: 'no-store'
                 }
             );
 
@@ -130,28 +191,52 @@ document.addEventListener('DOMContentLoaded', () => {
 
             datos.productos.forEach(producto => {
 
+                // =====================================
+                // TARJETA DEL PRODUCTO
+                // =====================================
+
                 const tarjeta = document.createElement('article');
                 tarjeta.className = 'tarjeta';
+
+                // =====================================
+                // IMAGEN DEL PRODUCTO
+                // =====================================
 
                 const imagenContenedor = document.createElement('div');
                 imagenContenedor.className = 'imagen-producto';
 
-                if (producto.imagen) {
+                const urlImagen = obtenerUrlImagen(producto.imagen);
+
+                if (urlImagen) {
 
                     const imagen = document.createElement('img');
 
-                    imagen.src = producto.imagen;
-                    imagen.alt = producto.nombre;
+                    imagen.src = urlImagen;
+                    imagen.alt = producto.nombre || 'Producto Stellar CD';
+                    imagen.loading = 'lazy';
+                    imagen.decoding = 'async';
+
+                    // Si la imagen falla, mostrar decoración
+                    imagen.onerror = function () {
+
+                        console.warn(
+                            'No se pudo cargar la imagen:',
+                            urlImagen
+                        );
+
+                        mostrarImagenAlternativa(imagenContenedor);
+                    };
 
                     imagenContenedor.appendChild(imagen);
 
                 } else {
 
-                    const icono = document.createElement('span');
-                    icono.textContent = '✦';
-
-                    imagenContenedor.appendChild(icono);
+                    mostrarImagenAlternativa(imagenContenedor);
                 }
+
+                // =====================================
+                // INFORMACIÓN DEL PRODUCTO
+                // =====================================
 
                 const informacion = document.createElement('div');
                 informacion.className = 'informacion';
@@ -160,17 +245,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 categoria.textContent = producto.categoria ?? '';
 
                 const nombre = document.createElement('h3');
-                nombre.textContent = producto.nombre;
+                nombre.textContent = producto.nombre ?? '';
 
                 const descripcion = document.createElement('p');
                 descripcion.textContent =
                     producto.descripcion ?? '';
 
                 const precio = document.createElement('strong');
+
                 precio.textContent =
                     '$' + Number(producto.precio).toFixed(2) + ' MXN';
 
+                // =====================================
                 // BOTÓN AGREGAR AL CARRITO
+                // =====================================
 
                 const botonCarrito = document.createElement('button');
 
@@ -185,6 +273,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         botonCarrito
                     );
                 });
+
+                // =====================================
+                // CONSTRUIR TARJETA
+                // =====================================
 
                 informacion.append(
                     categoria,
@@ -212,7 +304,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =====================================
-    // 4. INICIAR CATÁLOGO
+    // 6. INICIAR CATÁLOGO
     // =====================================
 
     cargarProductos();

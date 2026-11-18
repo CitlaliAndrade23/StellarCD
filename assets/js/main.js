@@ -20,18 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (total === 0) return;
 
     let actual = 0;
-
     let intervalo;
-
-// Avanzar automáticamente cada 4 segundos
-function iniciarAutomatico() {
-    clearInterval(intervalo);
-
-    intervalo = setInterval(function () {
-        actual = (actual + 1) % total;
-        actualizarCarrusel();
-    }, 4000);
-}
 
     function actualizarCarrusel() {
         pista.style.transform = `translateX(-${actual * 100}%)`;
@@ -40,20 +29,27 @@ function iniciarAutomatico() {
             `${String(actual + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}`;
     }
 
-   siguiente.addEventListener("click", function () {
-    actual = (actual + 1) % total;
-    actualizarCarrusel();
-    iniciarAutomatico();
-});
+    function iniciarAutomatico() {
+        clearInterval(intervalo);
 
-anterior.addEventListener("click", function () {
-    actual = (actual - 1 + total) % total;
-    actualizarCarrusel();
-    iniciarAutomatico();
-});
+        intervalo = setInterval(function () {
+            actual = (actual + 1) % total;
+            actualizarCarrusel();
+        }, 4000);
+    }
 
+    siguiente.addEventListener("click", function () {
+        actual = (actual + 1) % total;
+        actualizarCarrusel();
+        iniciarAutomatico();
+    });
 
-    // Pausar el carrusel al pasar el mouse
+    anterior.addEventListener("click", function () {
+        actual = (actual - 1 + total) % total;
+        actualizarCarrusel();
+        iniciarAutomatico();
+    });
+
     const carrusel = document.querySelector(".carrusel");
 
     if (carrusel) {
@@ -66,18 +62,14 @@ anterior.addEventListener("click", function () {
         });
     }
 
-    // Mostrar la primera diapositiva
     actualizarCarrusel();
-
-    // Activar el movimiento automático
     iniciarAutomatico();
 
 });
 
 
-
 /* =====================================
-   MOSTRAR Y OCULTAR CONTRASEÑA
+   MOSTRAR Y OCULTAR CONTRASEÑA - LOGIN
 ===================================== */
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -91,19 +83,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     botonVer.addEventListener("click", function () {
 
-        if (campoContrasena.type === "password") {
+        const mostrar = campoContrasena.type === "password";
 
-            campoContrasena.type = "text";
-            botonVer.textContent = "OCULTAR";
-            botonVer.setAttribute("aria-pressed", "true");
+        campoContrasena.type = mostrar ? "text" : "password";
+        botonVer.textContent = mostrar ? "OCULTAR" : "VER";
 
-        } else {
-
-            campoContrasena.type = "password";
-            botonVer.textContent = "VER";
-            botonVer.setAttribute("aria-pressed", "false");
-
-        }
+        botonVer.setAttribute("aria-pressed", String(mostrar));
 
     });
 
@@ -149,3 +134,60 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
+
+/* =====================================
+   MENÚS DESPLEGABLES - STELLAR CD
+===================================== */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const menus = document.querySelectorAll(
+        ".site-nav .nav-dropdown"
+    );
+
+    // Cerrar el otro menú al abrir uno
+    menus.forEach(function (menu) {
+
+        menu.addEventListener("toggle", function () {
+
+            if (!menu.open) return;
+
+            menus.forEach(function (otroMenu) {
+
+                if (otroMenu !== menu) {
+                    otroMenu.open = false;
+                }
+
+            });
+
+        });
+
+    });
+
+    // Cerrar menús al hacer clic fuera
+    document.addEventListener("click", function (evento) {
+
+        menus.forEach(function (menu) {
+
+            if (!menu.contains(evento.target)) {
+                menu.open = false;
+            }
+
+        });
+
+    });
+
+    // Cerrar menús con la tecla Escape
+    document.addEventListener("keydown", function (evento) {
+
+        if (evento.key === "Escape") {
+
+            menus.forEach(function (menu) {
+                menu.open = false;
+            });
+
+        }
+
+    });
+
+});

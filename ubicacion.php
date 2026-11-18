@@ -101,16 +101,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 </main>
 
-<footer class="site-footer">
-    <div>
-        <h2>STELLAR CD ✳</h2>
-        <p>Mini CD, maxi recuerdos.</p>
-    </div>
-
-    <p class="copyright">
-        © <?php echo date('Y'); ?> Stellar CD.
-    </p>
-</footer>
+<?php require __DIR__ . '/includes/footer.php'; ?>
 
 </body>
 </html>

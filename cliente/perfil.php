@@ -1,31 +1,37 @@
 
 <?php
-// Iniciar sesión
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Comprobar que el usuario inició sesión
 if (!isset($_SESSION['id_usuario'])) {
     header('Location: ../iniciarSesion.php');
     exit;
 }
 
-// Solo los clientes pueden acceder
 if (($_SESSION['rol'] ?? '') !== 'cliente') {
     http_response_code(403);
     exit('Acceso no autorizado.');
 }
 
-// Obtener datos del usuario
+$nombreOriginal = trim(
+    $_SESSION['nombre_usuario'] ?? 'Cliente'
+);
+
 $nombre = htmlspecialchars(
-    $_SESSION['nombre_usuario'] ?? 'Cliente',
+    $nombreOriginal,
     ENT_QUOTES,
     'UTF-8'
 );
 
 $correo = htmlspecialchars(
     $_SESSION['correo'] ?? '',
+    ENT_QUOTES,
+    'UTF-8'
+);
+
+$primerNombre = htmlspecialchars(
+    explode(' ', $nombreOriginal)[0],
     ENT_QUOTES,
     'UTF-8'
 );
@@ -36,113 +42,167 @@ $correo = htmlspecialchars(
 
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
     <title>Mi perfil | Stellar CD</title>
 
     <link rel="stylesheet"
-          href="../assets/css/style.css?v=11">
+          href="../assets/css/style.css?v=12">
 
-    <style>
-        /* CORREGIR LOGO DEL PERFIL */
-
-        .site-header .logo {
-            display: flex;
-            align-items: center;
-            width: 80px;
-            flex-shrink: 0;
-        }
-
-        .site-header .logo img {
-            display: block;
-            width: 80px !important;
-            height: auto !important;
-            max-width: 80px !important;
-            max-height: 80px !important;
-            object-fit: contain;
-        }
-
-        .site-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 12px 7%;
-            min-height: 80px;
-            box-sizing: border-box;
-        }
-    </style>
-
+    <script src="../assets/js/main.js?v=5" defer></script>
 </head>
 
-<body>
-
-<!-- =====================================
-     HEADER COMPARTIDO
-===================================== -->
+<body class="pagina-perfil">
 
 <?php require __DIR__ . '/../includes/header.php'; ?>
 
+<main class="perfil-dashboard">
 
-<!-- =====================================
-     PERFIL DEL CLIENTE
-===================================== -->
+    <div class="perfil-interior">
 
-<main class="perfil-contenedor">
+        <div class="perfil-bienvenida">
 
-    <span class="etiqueta">
-        STELLAR CD / MY ACCOUNT
-    </span>
+            <span class="perfil-etiqueta">
+                STELLAR CD / MY ACCOUNT
+            </span>
 
-    <h1>
-        ¡HOLA, <?php echo $nombre; ?>! ✳
-    </h1>
+            <h1>
+                ¡HOLA DE NUEVO,
+                <span><?php echo $primerNombre; ?>!</span>
+                ✳
+            </h1>
 
+            <p>
+                Tu espacio para descubrir nuevos diseños,
+                crear recuerdos y consultar tu cuenta.
+            </p>
 
-    <!-- TARJETA DEL PERFIL -->
+        </div>
 
-    <div class="perfil-tarjeta">
+        <section class="perfil-panel">
 
-        <h2>MI PERFIL ♡</h2>
+            <div class="perfil-panel-encabezado">
 
+                <div class="perfil-avatar">
+                    ♡
+                </div>
 
-        <!-- NOMBRE -->
+                <div>
+                    <span class="perfil-subtitulo">
+                        TU ESPACIO PERSONAL
+                    </span>
 
-        <p>
-            <strong>Nombre:</strong>
-            <?php echo $nombre; ?>
-        </p>
+                    <h2>MI PERFIL</h2>
+                    <p>Cuenta de cliente</p>
+                </div>
 
+                <span class="perfil-estrella">✳</span>
 
-        <!-- CORREO -->
+            </div>
 
-        <p>
-            <strong>Correo:</strong>
-            <?php echo $correo; ?>
-        </p>
+            <div class="perfil-datos">
 
+                <div class="perfil-dato">
+                    <span>NOMBRE COMPLETO</span>
+                    <strong><?php echo $nombre; ?></strong>
+                </div>
 
-        <!-- TIPO DE CUENTA -->
+                <div class="perfil-dato">
+                    <span>CORREO ELECTRÓNICO</span>
+                    <strong><?php echo $correo; ?></strong>
+                </div>
 
-        <p>
-            <strong>Tipo de cuenta:</strong>
-            Cliente
-        </p>
+                <div class="perfil-dato">
+                    <span>TIPO DE CUENTA</span>
+                    <strong>Cliente</strong>
+                </div>
 
+            </div>
 
-        <!-- ENLACE AL CATÁLOGO -->
+        </section>
 
-        <a href="../catalogo.php"
-           class="perfil-enlace">
+        <div class="perfil-seccion-titulo">
+            <span>EXPLORE / 001</span>
+            <h2>¿QUÉ HACEMOS HOY?</h2>
+        </div>
 
-            EXPLORAR CATÁLOGO ↗
+        <div class="perfil-acciones">
 
-        </a>
+            <a href="../catalogo.php"
+               class="perfil-accion perfil-accion-catalogo">
+
+                <span class="perfil-accion-icono">◉</span>
+
+                <div>
+                    <h3>EXPLORAR CATÁLOGO</h3>
+
+                    <p>
+                        Descubre nuestros mini CD
+                        con diseños predeterminados.
+                    </p>
+                </div>
+
+                <span class="perfil-accion-flecha">↗</span>
+
+            </a>
+
+            <a href="../personaliza.php"
+               class="perfil-accion perfil-accion-personaliza">
+
+                <span class="perfil-accion-icono">✳</span>
+
+                <div>
+                    <h3>PERSONALIZA TU CD</h3>
+
+                    <p>
+                        Diseña un mini CD con tus canciones,
+                        imágenes y recuerdos favoritos.
+                    </p>
+                </div>
+
+                <span class="perfil-accion-flecha">↗</span>
+
+            </a>
+
+        </div>
+
+        <div class="perfil-seccion-titulo">
+            <span>YOUR ORDERS / 002</span>
+            <h2>TUS COMPRAS</h2>
+        </div>
+
+        <section class="perfil-pedidos">
+
+            <div class="perfil-pedidos-icono">♫</div>
+
+            <div class="perfil-pedidos-texto">
+                <h3>MIS PEDIDOS</h3>
+
+                <p>
+                    Consulta los productos de tu carrito
+                    y continúa con tu compra.
+                </p>
+            </div>
+
+            <a href="../carrito.php"
+               class="perfil-boton-pedidos">
+                IR A MI CARRITO ↗
+            </a>
+
+        </section>
+
+        <div class="perfil-salida">
+            <a href="../cerrarSesion.php">
+                CERRAR SESIÓN ↗
+            </a>
+        </div>
 
     </div>
 
 </main>
+
+<?php require __DIR__ . '/../includes/footer.php'; ?>
 
 </body>
 </html>

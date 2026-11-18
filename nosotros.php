@@ -18,7 +18,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <title>Nosotros | Stellar CD</title>
 
     <link rel="stylesheet"
-          href="assets/css/style.css?v=6">
+          href="assets/css/style.css?v=21">
 
     <script src="assets/js/main.js" defer></script>
 </head>
@@ -267,42 +267,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 </main>
 
-
-<!-- =====================================
-     FOOTER
-===================================== -->
-
-<footer class="site-footer">
-
-    <div>
-
-        <h2>STELLAR CD ✳</h2>
-
-        <p>Mini CD, maxi recuerdos.</p>
-
-    </div>
-
-    <div class="footer-links">
-
-        <a href="catalogo.php">
-            Catálogo
-        </a>
-
-        <a href="personaliza.php">
-            Personaliza
-        </a>
-
-        <a href="contacto.php">
-            Contacto
-        </a>
-
-    </div>
-
-    <p class="copyright">
-        © <?php echo date('Y'); ?> Stellar CD.
-    </p>
-
-</footer>
+<?php require __DIR__ . '/includes/footer.php'; ?>
 
 </body>
 </html>

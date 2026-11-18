@@ -452,35 +452,7 @@ function escaparContacto($valor) {
 </main>
 
 
-<!-- =====================================
-     FOOTER
-===================================== -->
-
-<footer class="site-footer">
-
-    <div>
-
-        <h2>STELLAR CD ✳</h2>
-
-        <p>Mini CD, maxi recuerdos.</p>
-
-    </div>
-
-    <div class="footer-links">
-
-        <a href="index.php">Inicio</a>
-
-        <a href="catalogo.php">Catálogo</a>
-
-        <a href="nosotros.php">Nosotros</a>
-
-    </div>
-
-    <p class="copyright">
-        © <?php echo date('Y'); ?> Stellar CD.
-    </p>
-
-</footer>
+<?php require __DIR__ . '/includes/footer.php'; ?>
 
 </body>
 </html>
