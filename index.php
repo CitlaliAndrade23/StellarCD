@@ -47,7 +47,7 @@ function escapar($texto)
     <title>Stellar CD | Tu música, tu historia</title>
 
     <link rel="stylesheet"
-          href="assets/css/style.css?v=17">
+          href="assets/css/style.css?v=21">
 
     <script src="assets/js/main.js?v=4" defer></script>
 
@@ -65,7 +65,7 @@ function escapar($texto)
     gtag('config', 'G-1XZ2S2MXZD');
 </script>
 
-<link rel="stylesheet" href="assets/css/responsive.css?v=2">
+<link rel="stylesheet" href="assets/css/responsive.css?v=7">
 </head>
 
 <body class="pagina-inicio">
@@ -185,157 +185,42 @@ function escapar($texto)
         </div>
 
 
-        <!-- CARRUSEL -->
+       
+<!-- CARRUSEL -->
 
-        <div class="carrusel"
-             aria-label="Galería Stellar CD">
+<div class="carrusel" aria-label="Galería Stellar CD">
 
-            <div class="carrusel-pista"
-                 id="carruselPista">
+    <div class="carrusel-pista" id="carruselPista">
 
+        <article class="diapositiva">
+            <img src="assets/img/BANNERSTELLARCD_1.png"
+                 alt="BANNERSTELLARCD_1.png">
+        </article>
 
-                <!-- DIAPOSITIVA 1 -->
+        <article class="diapositiva">
+            <img src="assets/img/BANNERSTELLARCD_2.png"
+                 alt="BANNERSTELLARCD_2.png">
+        </article>
 
-                <article class="diapositiva diapositiva-rosa">
+        <article class="diapositiva">
+            <img src="assets/img/BANNERSTELLARCD_3.png"
+                 alt="BANNERSTELLARCD_3.png">
+        </article>
 
-                    <span class="numero-slide">
-                        01 / 05
-                    </span>
+        <article class="diapositiva">
+            <img src="assets/img/BANNERSTELLARCD_4.png"
+                 alt="BANNERSTELLARCD_4.png">
+        </article>
 
-                    <div class="slide-contenido">
+        <article class="diapositiva">
+            <img src="assets/img/BANNERSTELLARCD_5.png"
+                 alt="BANNERSTELLARCD_5.png">
+        </article>
 
-                        <span class="slide-icono"
-                              aria-hidden="true">✳</span>
+    </div>
 
-                        <h3>
-                            YOUR<br>MUSIC.
-                        </h3>
+</div>
 
-                        <p>MUSIC EDITION</p>
-
-                    </div>
-
-                    <span class="slide-marca">
-                        STELLAR CD ©
-                    </span>
-
-                </article>
-
-
-                <!-- DIAPOSITIVA 2 -->
-
-                <article class="diapositiva diapositiva-turquesa">
-
-                    <span class="numero-slide">
-                        02 / 05
-                    </span>
-
-                    <div class="slide-contenido">
-
-                        <span class="slide-icono"
-                              aria-hidden="true">✦</span>
-
-                        <h3>
-                            MAKE IT<br>YOURS.
-                        </h3>
-
-                        <p>CUSTOM EDITION</p>
-
-                    </div>
-
-                    <span class="slide-marca">
-                        STELLAR CD ©
-                    </span>
-
-                </article>
-
-
-                <!-- DIAPOSITIVA 3 -->
-
-                <article class="diapositiva diapositiva-pastel">
-
-                    <span class="numero-slide">
-                        03 / 05
-                    </span>
-
-                    <div class="slide-contenido">
-
-                        <span class="slide-icono"
-                              aria-hidden="true">♡</span>
-
-                        <h3>
-                            KEEP<br>MEMORIES.
-                        </h3>
-
-                        <p>MEMORY EDITION</p>
-
-                    </div>
-
-                    <span class="slide-marca">
-                        STELLAR CD ©
-                    </span>
-
-                </article>
-
-
-                <!-- DIAPOSITIVA 4 -->
-
-                <article class="diapositiva diapositiva-blanca">
-
-                    <span class="numero-slide">
-                        04 / 05
-                    </span>
-
-                    <div class="slide-contenido">
-
-                        <span class="slide-icono"
-                              aria-hidden="true">★</span>
-
-                        <h3>
-                            MADE<br>WITH LOVE.
-                        </h3>
-
-                        <p>LOVE EDITION</p>
-
-                    </div>
-
-                    <span class="slide-marca">
-                        STELLAR CD ©
-                    </span>
-
-                </article>
-
-
-                <!-- DIAPOSITIVA 5 -->
-
-                <article class="diapositiva diapositiva-oscura">
-
-                    <span class="numero-slide">
-                        05 / 05
-                    </span>
-
-                    <div class="slide-contenido">
-
-                        <span class="slide-icono"
-                              aria-hidden="true">✧</span>
-
-                        <h3>
-                            STAY<br>STELLAR.
-                        </h3>
-
-                        <p>STELLAR EDITION</p>
-
-                    </div>
-
-                    <span class="slide-marca">
-                        STELLAR CD ©
-                    </span>
-
-                </article>
-
-            </div>
-
-        </div>
 
 
         <!-- CONTROLES DEL CARRUSEL -->

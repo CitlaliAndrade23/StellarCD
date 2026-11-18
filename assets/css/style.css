@@ -658,58 +658,22 @@ nav a:hover {
 }
 
 
-/* =====================================
-   STELLAR CD - GALERÍA EDITORIAL
-===================================== */
 
-.seccion-galeria {
-    background: #FFF8F5;
-    color: #252044;
-    padding: 100px 7%;
-    overflow: hidden;
-}
+/* CONTENEDOR DEL CARRUSEL */
 
-.galeria-encabezado {
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
-    gap: 40px;
-    margin-bottom: 45px;
-}
-
-.galeria-encabezado .etiqueta {
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 3px;
-}
-
-.galeria-encabezado h2 {
-    font-size: clamp(42px, 6vw, 85px);
-    font-weight: 900;
-    line-height: 0.95;
-    margin: 20px 0 0;
-    letter-spacing: -3px;
-}
-
-.galeria-encabezado h2 span {
-    display: block;
-    color: #F46A9B;
-}
-
-.galeria-encabezado p {
-    max-width: 280px;
-    font-size: 15px;
-    line-height: 1.7;
-}
 
 /* CONTENEDOR DEL CARRUSEL */
 
 .carrusel {
-    width: 100%;
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
     overflow: hidden;
     border: 2px solid #252044;
     box-shadow: 9px 9px 0 #252044;
 }
+
+/* PISTA DEL CARRUSEL */
 
 .carrusel-pista {
     display: flex;
@@ -719,80 +683,58 @@ nav a:hover {
 
 /* DIAPOSITIVAS */
 
-.diapositiva {
+.carrusel .diapositiva {
     flex: 0 0 100%;
-    min-width: 0;
-    min-height: 430px;
-    padding: 35px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position: relative;
+    min-width: 100%;
+    min-height: 0;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    display: block;
     overflow: hidden;
 }
 
-.numero-slide,
-.slide-marca {
-    font-size: 12px;
-    font-weight: 900;
-    letter-spacing: 2px;
-}
+/* IMÁGENES */
 
-.slide-contenido {
-    text-align: center;
-    position: relative;
-    z-index: 1;
-}
-
-.slide-icono {
+.carrusel .diapositiva img {
     display: block;
-    font-size: 65px;
-    margin-bottom: 12px;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
 }
 
-.slide-contenido h3 {
-    font-size: clamp(50px, 9vw, 125px);
-    line-height: 0.85;
-    font-weight: 900;
-    letter-spacing: -5px;
+
+/* PISTA DEL CARRUSEL */
+
+.carrusel-pista {
+    display: flex;
+    transition: transform 0.55s ease;
+    will-change: transform;
+}
+
+/* DIAPOSITIVAS */
+
+.carrusel .diapositiva {
+    flex: 0 0 100%;
+    min-width: 100%;
+    min-height: 0;
+    height: auto;
+    padding: 0;
     margin: 0;
+    display: block;
+    overflow: hidden;
 }
 
-.slide-contenido p {
-    margin-top: 25px;
-    font-size: 13px;
-    font-weight: 800;
-    letter-spacing: 5px;
+/* IMÁGENES DE LOS BANNERS */
+
+.carrusel .diapositiva img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
 }
 
-/* COLORES */
-
-.diapositiva-rosa {
-    background: #F46A9B;
-    color: #252044;
-}
-
-.diapositiva-turquesa {
-    background: #60BFCA;
-    color: #252044;
-}
-
-.diapositiva-pastel {
-    background: #F9C8D8;
-    color: #252044;
-}
-
-.diapositiva-blanca {
-    background: #FFF8F5;
-    color: #F46A9B;
-}
-
-.diapositiva-oscura {
-    background: #252044;
-    color: #FFF8F5;
-}
-
-/* CONTROLES */
+/* CONTROLES DEL CARRUSEL */
 
 .carrusel-controles {
     display: flex;
@@ -806,7 +748,7 @@ nav a:hover {
     width: 55px;
     height: 55px;
     background: #252044;
-    color: white;
+    color: #FFFFFF;
     border: 2px solid #252044;
     font-size: 25px;
     cursor: pointer;
@@ -838,30 +780,18 @@ nav a:hover {
         gap: 15px;
     }
 
-    .galeria-encabezado h2 {
-        letter-spacing: -2px;
+    .carrusel-controles {
+        gap: 18px;
+        margin-top: 25px;
     }
 
-    .diapositiva {
-        min-height: 350px;
-        padding: 22px;
-    }
-
-    .slide-contenido h3 {
-        font-size: clamp(42px, 10vw, 75px);
-        letter-spacing: -2px;
-    }
-
-    .slide-icono {
-        font-size: 45px;
+    .carrusel-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 22px;
     }
 }
 
-@media (prefers-reduced-motion: reduce) {
-    .carrusel-pista {
-        transition: none;
-    }
-}
 
 
 /* HEADER GLOBAL STELLAR CD */
@@ -4944,4 +4874,19 @@ nav a:hover {
         object-fit: contain;
     }
 
+}
+
+
+/* ESPACIADO DEL ENCABEZADO DE LA GALERÍA */
+
+.pagina-inicio .galeria-encabezado {
+    padding-left: 7%;
+    padding-right: 7%;
+}
+
+@media (max-width: 768px) {
+    .pagina-inicio .galeria-encabezado {
+        padding-left: 6%;
+        padding-right: 6%;
+    }
 }
