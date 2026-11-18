@@ -1,0 +1,769 @@
+
+/* =====================================
+   STELLAR CD - RESPONSIVE
+   PÁGINA DE INICIO
+===================================== */
+
+/* TABLET */
+@media (max-width: 900px) {
+
+    .pagina-inicio .hero {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        padding: 60px 6%;
+        min-height: auto;
+    }
+
+    .pagina-inicio .hero-texto {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .pagina-inicio .hero h1 {
+        font-size: clamp(42px, 8vw, 70px);
+        line-height: 1;
+        letter-spacing: -2px;
+        overflow-wrap: break-word;
+    }
+
+    .pagina-inicio .hero-grafico {
+        width: 100%;
+        min-height: 380px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .pagina-inicio .hero-grafico img {
+        display: block;
+        width: 100%;
+        max-width: 440px;
+        height: auto;
+        object-fit: contain;
+    }
+
+    .pagina-inicio .grid-destacados {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* CELULAR */
+@media (max-width: 600px) {
+
+    .pagina-inicio {
+        width: 100%;
+        overflow-x: clip;
+    }
+
+    /* HERO */
+
+    .pagina-inicio .hero {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 45px 6% 55px;
+        gap: 20px;
+        min-height: auto;
+    }
+
+    .pagina-inicio .hero-texto {
+        width: 100%;
+    }
+
+    .pagina-inicio .hero .etiqueta {
+        font-size: 10px;
+        letter-spacing: 1.5px;
+        margin-bottom: 18px;
+    }
+
+    .pagina-inicio .hero h1 {
+        font-size: clamp(36px, 10vw, 55px);
+        line-height: 1;
+        letter-spacing: -1.5px;
+        margin-bottom: 22px;
+        max-width: 100%;
+        overflow-wrap: break-word;
+    }
+
+    .pagina-inicio .hero-texto p {
+        font-size: 15px;
+        line-height: 1.6;
+        margin-bottom: 28px;
+    }
+
+    .pagina-inicio .boton-principal {
+        max-width: 100%;
+        padding: 15px 22px;
+        font-size: 12px;
+        text-align: center;
+    }
+
+    /* LLAVERO */
+
+    .pagina-inicio .hero-grafico {
+        width: 100%;
+        min-height: 300px;
+        padding: 10px 0;
+        overflow: visible;
+    }
+
+    .pagina-inicio .hero-grafico img {
+        display: block;
+        width: min(100%, 350px);
+        max-width: 100%;
+        height: auto;
+        object-fit: contain;
+        margin: 0 auto;
+    }
+
+    /* NOSOTROS */
+
+    .pagina-inicio .seccion-nosotros {
+        padding: 65px 6%;
+    }
+
+    .pagina-inicio .seccion-nosotros h2 {
+        font-size: clamp(34px, 9vw, 50px);
+        line-height: 1.05;
+        letter-spacing: -1.5px;
+    }
+
+    .pagina-inicio .seccion-nosotros p {
+        font-size: 16px;
+        line-height: 1.7;
+    }
+
+    /* PRODUCTOS DESTACADOS */
+
+    .pagina-inicio .seccion-destacados {
+        padding: 65px 6%;
+    }
+
+    .pagina-inicio .titulo-seccion h2 {
+        font-size: clamp(34px, 9vw, 48px);
+        letter-spacing: -1px;
+    }
+
+    .pagina-inicio .grid-destacados {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .pagina-inicio .producto-visual {
+        height: 250px;
+    }
+
+    /* PERSONALIZA */
+
+    .pagina-inicio .seccion-personaliza {
+        padding: 65px 6%;
+    }
+
+    .pagina-inicio .seccion-personaliza h2 {
+        font-size: clamp(38px, 10vw, 55px);
+        line-height: 1;
+        letter-spacing: -1.5px;
+        overflow-wrap: break-word;
+    }
+
+    .pagina-inicio .seccion-personaliza p {
+        font-size: 16px;
+        line-height: 1.7;
+    }
+
+    /* GALERÍA Y CARRUSEL */
+
+    .pagina-inicio .seccion-galeria {
+        padding: 65px 6%;
+    }
+
+    .pagina-inicio .galeria-encabezado {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .pagina-inicio .galeria-encabezado h2 {
+        font-size: clamp(34px, 9vw, 50px);
+        letter-spacing: -1px;
+    }
+
+    .pagina-inicio .carrusel {
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    .pagina-inicio .diapositiva {
+        min-height: 300px;
+        padding: 20px;
+    }
+
+    .pagina-inicio .slide-contenido h3 {
+        font-size: clamp(32px, 9vw, 55px);
+        line-height: 1;
+        letter-spacing: -1px;
+        overflow-wrap: break-word;
+    }
+
+    .pagina-inicio .slide-contenido p {
+        font-size: 11px;
+        letter-spacing: 2px;
+    }
+
+    .pagina-inicio .carrusel-controles {
+        gap: 18px;
+    }
+
+    .pagina-inicio .carrusel-btn {
+        width: 45px;
+        height: 45px;
+    }
+}
+
+/* =====================================
+   STELLAR CD - HERO MÓVIL
+===================================== */
+
+@media (max-width: 600px) {
+
+    .pagina-inicio .hero {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 5px;
+        padding: 40px 6% 35px;
+        min-height: auto;
+        height: auto;
+        overflow: hidden;
+    }
+
+    .pagina-inicio .hero-texto {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .pagina-inicio .hero h1 {
+        font-size: clamp(35px, 10vw, 50px);
+        line-height: 1;
+        letter-spacing: -1px;
+        margin-bottom: 20px;
+    }
+
+    .pagina-inicio .hero-texto p {
+        font-size: 14px;
+        line-height: 1.6;
+        margin-bottom: 25px;
+    }
+
+    .pagina-inicio .hero-grafico {
+        width: 100%;
+        min-height: 0;
+        height: auto;
+        padding: 15px 0 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: visible;
+    }
+
+    .pagina-inicio .hero-grafico img {
+        display: block;
+        width: 100%;
+        max-width: 290px;
+        height: auto;
+        object-fit: contain;
+        margin: 0 auto;
+    }
+
+    .pagina-inicio .hero-sticker {
+        top: 0;
+        right: 0;
+        font-size: 12px;
+        padding: 10px;
+    }
+}
+
+
+/* =====================================
+   STELLAR CD - AJUSTES FINALES MÓVIL
+===================================== */
+
+@media (max-width: 600px) {
+
+    /* HERO */
+
+    .pagina-inicio .hero {
+        padding-bottom: 20px;
+    }
+
+    .pagina-inicio .hero-grafico {
+        min-height: 0;
+        height: auto;
+        padding: 5px 0 0;
+        margin-bottom: 0;
+    }
+
+    .pagina-inicio .hero-grafico img {
+        width: 100%;
+        max-width: 290px;
+        height: auto;
+        object-fit: contain;
+    }
+
+    /* CINTA ANIMADA */
+
+    .pagina-inicio .cinta {
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        padding: 12px 0;
+    }
+
+    .pagina-inicio .cinta-contenido {
+        width: max-content;
+        font-size: 15px;
+        letter-spacing: 1px;
+        white-space: nowrap;
+    }
+
+    /* EVITAR DESBORDAMIENTO HORIZONTAL */
+
+    .pagina-inicio .hero,
+    .pagina-inicio .seccion-galeria,
+    .pagina-inicio .seccion-destacados {
+        max-width: 100%;
+    }
+}
+
+
+/* =====================================
+   STELLAR CD - NOSOTROS RESPONSIVE
+===================================== */
+
+@media (max-width: 600px) {
+
+    /* HERO NOSOTROS */
+
+    .pagina-nosotros .nosotros-hero {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 25px;
+        padding: 65px 6% 55px;
+        width: 100%;
+        min-width: 0;
+        overflow: hidden;
+    }
+
+    .pagina-nosotros .nosotros-hero > * {
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    /* TÍTULO */
+
+    .pagina-nosotros .nosotros-hero h1 {
+        font-size: clamp(32px, 9.5vw, 48px);
+        line-height: 1.05;
+        letter-spacing: -1.5px;
+        margin: 20px 0 30px;
+        max-width: 100%;
+        overflow-wrap: anywhere;
+    }
+
+    .pagina-nosotros .nosotros-hero h1 span {
+        display: block;
+        max-width: 100%;
+    }
+
+    /* DESCRIPCIÓN */
+
+    .pagina-nosotros .nosotros-hero p {
+        width: 100%;
+        max-width: 100%;
+        font-size: 15px;
+        line-height: 1.7;
+        overflow-wrap: break-word;
+    }
+
+    /* DISCO DECORATIVO */
+
+    .pagina-nosotros .nosotros-grafico {
+        width: 100%;
+        min-height: 280px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .pagina-nosotros .nosotros-disco {
+        width: min(100%, 240px);
+        max-width: 240px;
+        height: auto;
+        aspect-ratio: 1;
+    }
+
+    .pagina-nosotros .nosotros-estrella {
+        font-size: 50px;
+        right: 0;
+        top: 0;
+    }
+
+    /* INTRODUCCIÓN */
+
+    .pagina-nosotros .nosotros-intro {
+        padding: 65px 6%;
+    }
+
+    .pagina-nosotros .nosotros-intro h2 {
+        font-size: clamp(34px, 9vw, 48px);
+        line-height: 1.05;
+        letter-spacing: -1px;
+        overflow-wrap: break-word;
+    }
+
+    .pagina-nosotros .nosotros-intro p {
+        font-size: 16px;
+        line-height: 1.7;
+    }
+
+    /* MISIÓN Y VISIÓN */
+
+    .pagina-nosotros .nosotros-proposito {
+        grid-template-columns: 1fr;
+    }
+
+    .pagina-nosotros .nosotros-mision,
+    .pagina-nosotros .nosotros-vision {
+        padding: 65px 6%;
+        min-height: auto;
+    }
+
+    .pagina-nosotros .nosotros-proposito h2 {
+        font-size: clamp(36px, 10vw, 50px);
+        letter-spacing: -1px;
+    }
+
+    .pagina-nosotros .nosotros-proposito p {
+        font-size: 16px;
+        line-height: 1.7;
+    }
+
+    /* VALORES */
+
+    .pagina-nosotros .nosotros-valores {
+        padding: 65px 6%;
+    }
+
+    .pagina-nosotros .nosotros-valores h2 {
+        font-size: clamp(34px, 9vw, 48px);
+        letter-spacing: -1px;
+    }
+
+    .pagina-nosotros .valores-grid {
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+
+    /* CIERRE */
+
+    .pagina-nosotros .nosotros-cierre {
+        padding: 65px 6%;
+    }
+
+    .pagina-nosotros .nosotros-cierre h2 {
+        font-size: clamp(36px, 10vw, 55px);
+        letter-spacing: -1px;
+        overflow-wrap: break-word;
+    }
+
+    .pagina-nosotros .nosotros-cierre p {
+        font-size: 16px;
+    }
+}
+
+
+/* =====================================
+   STELLAR CD - ESCALA MÓVIL
+===================================== */
+
+@media (max-width: 600px) {
+
+    /* ESPACIADOS GENERALES */
+
+    .pagina-inicio .hero,
+    .pagina-nosotros .nosotros-hero,
+    .pagina-personaliza .personaliza-hero,
+    .pagina-contacto .contacto-hero {
+        padding-top: 45px;
+        padding-bottom: 45px;
+    }
+
+    /* TÍTULOS PRINCIPALES */
+
+    .pagina-inicio .hero h1,
+    .pagina-nosotros .nosotros-hero h1,
+    .pagina-personaliza .personaliza-hero h1,
+    .pagina-contacto .contacto-hero h1 {
+        font-size: clamp(29px, 9vw, 42px);
+        line-height: 1.05;
+        letter-spacing: -1px;
+        overflow-wrap: break-word;
+    }
+
+    /* TÍTULOS DE SECCIONES */
+
+    .pagina-inicio .seccion-nosotros h2,
+    .pagina-inicio .titulo-seccion h2,
+    .pagina-inicio .seccion-personaliza h2,
+    .pagina-inicio .galeria-encabezado h2,
+    .pagina-nosotros .nosotros-intro h2,
+    .pagina-nosotros .nosotros-proposito h2,
+    .pagina-nosotros .nosotros-valores h2,
+    .pagina-nosotros .nosotros-cierre h2 {
+        font-size: clamp(28px, 8vw, 40px);
+        line-height: 1.1;
+        letter-spacing: -1px;
+    }
+
+    /* PÁRRAFOS */
+
+    .pagina-inicio .hero-texto p,
+    .pagina-nosotros .nosotros-hero p,
+    .pagina-nosotros .nosotros-intro p,
+    .pagina-nosotros .nosotros-proposito p,
+    .pagina-contacto .contacto-hero p,
+    .pagina-personaliza .personaliza-hero p {
+        font-size: 14px;
+        line-height: 1.65;
+    }
+
+    /* BOTONES */
+
+    .pagina-inicio .boton-principal,
+    .pagina-nosotros .boton-principal,
+    .pagina-personaliza .boton-principal,
+    .pagina-contacto .boton-principal {
+        font-size: 12px;
+        padding: 13px 20px;
+    }
+
+    /* SECCIONES MÁS COMPACTAS */
+
+    .pagina-inicio .seccion-nosotros,
+    .pagina-inicio .seccion-destacados,
+    .pagina-inicio .seccion-personaliza,
+    .pagina-inicio .seccion-galeria,
+    .pagina-nosotros .nosotros-intro,
+    .pagina-nosotros .nosotros-mision,
+    .pagina-nosotros .nosotros-vision,
+    .pagina-nosotros .nosotros-valores,
+    .pagina-nosotros .nosotros-cierre {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    /* DISCO DECORATIVO NOSOTROS */
+
+    .pagina-nosotros .nosotros-grafico {
+        min-height: 230px;
+    }
+
+    .pagina-nosotros .nosotros-disco {
+        width: min(100%, 210px);
+        max-width: 210px;
+    }
+
+    /* LLAVERO INICIO */
+
+    .pagina-inicio .hero-grafico img {
+        max-width: 270px;
+    }
+}
+
+
+
+/* =====================================
+   CARRITO RESPONSIVE - STELLAR CD
+===================================== */
+
+@media (max-width: 600px) {
+
+    /* CONTENEDOR */
+
+    .carrito-contenedor {
+        width: 100%;
+        max-width: 100%;
+        padding: 40px 15px 65px;
+    }
+
+    .carrito-titulo {
+        font-size: clamp(28px, 8vw, 36px);
+        line-height: 1.1;
+    }
+
+    .carrito-subtitulo {
+        font-size: 14px;
+        line-height: 1.6;
+        margin-bottom: 25px;
+    }
+
+    /* TABLA CONVERTIDA EN TARJETAS */
+
+    .carrito-tabla-contenedor {
+        background: transparent;
+        border-radius: 0;
+        overflow: visible;
+        width: 100%;
+    }
+
+    .carrito-tabla {
+        display: block;
+        width: 100%;
+        min-width: 0;
+    }
+
+    .carrito-tabla thead {
+        display: none;
+    }
+
+    .carrito-tabla tbody {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    .carrito-tabla tr {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        background: #23233a;
+        border-radius: 15px;
+        padding: 18px;
+        gap: 14px;
+    }
+
+    .carrito-tabla td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        width: 100%;
+        min-width: 0;
+        padding: 0;
+        border-bottom: none;
+        font-size: 14px;
+    }
+
+    /* PRODUCTO */
+
+    .carrito-tabla td:first-child {
+        padding-bottom: 15px;
+        border-bottom: 1px solid #393950;
+    }
+
+    .carrito-producto {
+        width: 100%;
+        min-width: 0;
+        gap: 12px;
+    }
+
+    .carrito-imagen {
+        width: 65px;
+        height: 65px;
+        flex-shrink: 0;
+    }
+
+    .carrito-nombre {
+        font-size: 14px;
+        line-height: 1.4;
+        overflow-wrap: anywhere;
+    }
+
+    /* ETIQUETAS DE PRECIO Y CANTIDAD */
+
+    .carrito-tabla td:nth-child(2)::before {
+        content: "PRECIO";
+    }
+
+    .carrito-tabla td:nth-child(3)::before {
+        content: "CANTIDAD";
+    }
+
+    .carrito-tabla td:nth-child(4)::before {
+        content: "SUBTOTAL";
+    }
+
+    .carrito-tabla td:nth-child(2)::before,
+    .carrito-tabla td:nth-child(3)::before,
+    .carrito-tabla td:nth-child(4)::before {
+        color: #ff82ae;
+        font-size: 11px;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+    }
+
+    /* CONTROLES DE CANTIDAD */
+
+    .carrito-cantidad {
+        gap: 10px;
+    }
+
+    .carrito-cantidad button {
+        min-width: 34px;
+        min-height: 34px;
+        padding: 6px;
+        font-size: 16px;
+    }
+
+    /* BOTÓN ELIMINAR */
+
+    .carrito-tabla td:last-child {
+        padding-top: 12px;
+        border-top: 1px solid #393950;
+    }
+
+    .carrito-eliminar {
+        width: 100%;
+        padding: 12px;
+        font-size: 12px;
+    }
+
+    /* RESUMEN DEL PEDIDO */
+
+    .carrito-resumen {
+        width: 100%;
+        max-width: 100%;
+        padding: 22px 18px;
+        margin-top: 25px;
+    }
+
+    .carrito-resumen h2 {
+        font-size: 19px;
+        line-height: 1.2;
+    }
+
+    .carrito-total {
+        font-size: 16px;
+        flex-wrap: wrap;
+    }
+
+    .carrito-finalizar {
+        font-size: 12px;
+        padding: 14px;
+    }
+
+    /* CARRITO VACÍO */
+
+    .carrito-vacio {
+        padding: 30px 18px;
+    }
+
+    .carrito-vacio h2 {
+        font-size: 21px;
+    }
+
+}

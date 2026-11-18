@@ -169,7 +169,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Registrarse | Stellar CD</title>
 
     <link rel="stylesheet"
-          href="assets/css/style.css?v=13">
+          href="assets/css/style.css?v=15">
 
     <script src="assets/js/main.js?v=4" defer></script>
     <?php require_once __DIR__ . '/includes/analytics.php'; ?>

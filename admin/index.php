@@ -57,6 +57,7 @@ $nombreAdmin = htmlspecialchars(
 <!DOCTYPE html>
 <html lang="es">
 
+
 <head>
     <meta charset="UTF-8">
 
@@ -65,10 +66,19 @@ $nombreAdmin = htmlspecialchars(
 
     <title>Panel de administrador | Stellar CD</title>
 
+    <!-- ESTILOS GENERALES -->
     <link rel="stylesheet"
-          href="../assets/css/style.css?v=12">
+          href="../assets/css/style.css?v=16">
+
+    <!-- ESTILOS RESPONSIVE -->
+    <link rel="stylesheet"
+          href="../assets/css/responsive.css?v=5">
+
+    <!-- JAVASCRIPT GENERAL -->
+    <script src="../assets/js/main.js?v=5" defer></script>
 
 </head>
+
 
 <body>
 

@@ -32,12 +32,13 @@ if (empty($_SESSION['csrf_carrito'])) {
 
     <!-- ESTILOS -->
     <link rel="stylesheet"
-          href="assets/css/style.css?v=9">
+          href="assets/css/style.css?v=15">
 
     <!-- JAVASCRIPT -->
     <script src="assets/js/main.js" defer></script>
     <script src="assets/js/catalogo.js?v=5" defer></script>
     <?php require_once __DIR__ . '/includes/analytics.php'; ?>
+     <link rel="stylesheet" href="assets/css/responsive.css?v=5">
 
 </head>
 

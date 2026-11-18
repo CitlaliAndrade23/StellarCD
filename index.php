@@ -47,9 +47,9 @@ function escapar($texto)
     <title>Stellar CD | Tu música, tu historia</title>
 
     <link rel="stylesheet"
-          href="assets/css/style.css?v=13">
+          href="assets/css/style.css?v=17">
 
-    <script src="assets/js/main.js" defer></script>
+    <script src="assets/js/main.js?v=4" defer></script>
 
     <!-- Google Analytics 4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1XZ2S2MXZD"></script>
@@ -64,6 +64,8 @@ function escapar($texto)
     gtag('js', new Date());
     gtag('config', 'G-1XZ2S2MXZD');
 </script>
+
+<link rel="stylesheet" href="assets/css/responsive.css?v=2">
 </head>
 
 <body class="pagina-inicio">

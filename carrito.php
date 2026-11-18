@@ -108,7 +108,7 @@ function escaparCarrito($valor) {
 
     <!-- ESTILOS GENERALES -->
     <link rel="stylesheet"
-          href="assets/css/style.css?v=5">
+          href="assets/css/style.css?v=15">
 
     <style>
 
@@ -322,9 +322,19 @@ function escaparCarrito($valor) {
 
     </style>
 
-    <!-- JAVASCRIPT DEL CARRITO -->
-   <script src="assets/js/carrito.js?v=4" defer></script>
-   <?php require_once __DIR__ . '/includes/analytics.php'; ?>
+ 
+<!-- ESTILOS RESPONSIVE -->
+<link rel="stylesheet"
+      href="assets/css/responsive.css?v=6">
+
+<!-- JAVASCRIPT DEL MENÚ HAMBURGUESA -->
+<script src="assets/js/main.js?v=7" defer></script>
+
+<!-- JAVASCRIPT DEL CARRITO -->
+<script src="assets/js/carrito.js?v=4" defer></script>
+
+<!-- GOOGLE ANALYTICS -->
+<?php require_once __DIR__ . '/includes/analytics.php'; ?>
 
 </head>
 

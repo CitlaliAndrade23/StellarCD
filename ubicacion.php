@@ -14,7 +14,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <title>Ubicación | Stellar CD</title>
 
     <link rel="stylesheet"
-          href="assets/css/style.css?v=9">
+          href="assets/css/style.css?v=15">
 
     <script src="assets/js/main.js?v=2" defer></script>
     <script src="assets/js/ubicacion.js" defer></script>

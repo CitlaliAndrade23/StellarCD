@@ -77,8 +77,16 @@ function escaparAdmin($valor) {
 
     <title>Gestión de productos | Stellar CD</title>
 
-    <link rel="stylesheet"
-          href="../assets/css/style.css?v=11">
+   <!-- ESTILOS GENERALES -->
+<link rel="stylesheet"
+      href="../assets/css/style.css?v=16">
+
+<!-- ESTILOS RESPONSIVE -->
+<link rel="stylesheet"
+      href="../assets/css/responsive.css?v=5">
+
+<!-- JAVASCRIPT DEL MENÚ -->
+<script src="../assets/js/main.js?v=6" defer></script>
 
     <style>
         /* =====================================

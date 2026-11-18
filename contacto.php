@@ -81,7 +81,7 @@ function escaparContacto($valor) {
 
    
 <link rel="stylesheet"
-      href="assets/css/style.css?v=10">
+      href="assets/css/style.css?v=15">
 
 
     <script src="assets/js/main.js" defer></script>

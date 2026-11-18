@@ -1,11 +1,9 @@
 
 <?php
-// Iniciar sesión solamente si aún no está iniciada
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Detectar el entorno del proyecto
 $servidor = $_SERVER['HTTP_HOST'] ?? '';
 
 if (
@@ -14,10 +12,8 @@ if (
     str_starts_with($servidor, 'localhost:') ||
     str_starts_with($servidor, '127.0.0.1:')
 ) {
-    // XAMPP
     $base = '/stellar_cd/';
 } else {
-    // InfinityFree
     $base = '/';
 }
 ?>
@@ -30,87 +26,84 @@ if (
             alt="Stellar CD">
     </a>
 
-    <nav class="site-nav" aria-label="Navegación principal">
+    <button
+        type="button"
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Abrir menú"
+        aria-controls="menuPrincipal"
+        aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <nav
+        class="site-nav"
+        id="menuPrincipal"
+        aria-label="Navegación principal">
 
         <a href="<?php echo $base; ?>index.php">
             INICIO
         </a>
 
-<!-- MENÚ DESPLEGABLE DE PRODUCTOS -->
-<details class="nav-dropdown">
+        <details class="nav-dropdown">
+            <summary>
+                PRODUCTOS
+                <span class="dropdown-flecha">▾</span>
+            </summary>
 
-    <summary>
-        PRODUCTOS
-        <span class="dropdown-flecha" aria-hidden="true">▾</span>
-    </summary>
+            <div class="dropdown-menu">
+                <a href="<?php echo $base; ?>catalogo.php">
+                    <span class="dropdown-icono">💿</span>
+                    <span class="dropdown-texto">
+                        <strong>CATÁLOGO</strong>
+                        <small>Diseños predeterminados</small>
+                    </span>
+                </a>
 
-    <div class="dropdown-menu">
+                <a href="<?php echo $base; ?>personaliza.php">
+                    <span class="dropdown-icono">✦</span>
+                    <span class="dropdown-texto">
+                        <strong>PERSONALIZA</strong>
+                        <small>Crea tu propio diseño</small>
+                    </span>
+                </a>
+            </div>
+        </details>
 
-        <a href="<?php echo $base; ?>catalogo.php">
-            <span class="dropdown-icono">💿</span>
+        <details class="nav-dropdown">
+            <summary>
+                INFORMACIÓN
+                <span class="dropdown-flecha">▾</span>
+            </summary>
 
-            <span class="dropdown-texto">
-                <strong>CATÁLOGO</strong>
-                <small>Diseños predeterminados</small>
-            </span>
-        </a>
+            <div class="dropdown-menu">
+                <a href="<?php echo $base; ?>nosotros.php">
+                    <span class="dropdown-icono">✦</span>
+                    <span class="dropdown-texto">
+                        <strong>NOSOTROS</strong>
+                        <small>Conoce nuestra historia</small>
+                    </span>
+                </a>
 
-        <a href="<?php echo $base; ?>personaliza.php">
-            <span class="dropdown-icono">✦</span>
+                <a href="<?php echo $base; ?>contacto.php">
+                    <span class="dropdown-icono">✉</span>
+                    <span class="dropdown-texto">
+                        <strong>CONTACTO</strong>
+                        <small>Comunícate con nosotros</small>
+                    </span>
+                </a>
 
-            <span class="dropdown-texto">
-                <strong>PERSONALIZA</strong>
-                <small>Crea tu propio diseño</small>
-            </span>
-        </a>
-
-    </div>
-
-</details>
-
-
-       
-<!-- MENÚ DESPLEGABLE DE INFORMACIÓN -->
-<details class="nav-dropdown">
-
-    <summary>
-        INFORMACIÓN
-        <span class="dropdown-flecha" aria-hidden="true">▾</span>
-    </summary>
-
-    <div class="dropdown-menu">
-
-        <a href="<?php echo $base; ?>nosotros.php">
-            <span class="dropdown-icono">✦</span>
-
-            <span class="dropdown-texto">
-                <strong>NOSOTROS</strong>
-                <small>Conoce nuestra historia</small>
-            </span>
-        </a>
-
-        <a href="<?php echo $base; ?>contacto.php">
-            <span class="dropdown-icono">✉</span>
-
-            <span class="dropdown-texto">
-                <strong>CONTACTO</strong>
-                <small>Comunícate con nosotros</small>
-            </span>
-        </a>
-
-        <a href="<?php echo $base; ?>ubicacion.php">
-            <span class="dropdown-icono">⌖</span>
-
-            <span class="dropdown-texto">
-                <strong>UBICACIÓN</strong>
-                <small>Encuentra dónde estamos</small>
-            </span>
-        </a>
-
-    </div>
-
-</details>
-
+                <a href="<?php echo $base; ?>ubicacion.php">
+                    <span class="dropdown-icono">⌖</span>
+                    <span class="dropdown-texto">
+                        <strong>UBICACIÓN</strong>
+                        <small>Encuentra dónde estamos</small>
+                    </span>
+                </a>
+            </div>
+        </details>
 
         <a href="<?php echo $base; ?>carrito.php">
             MI CARRITO
@@ -119,17 +112,13 @@ if (
         <?php if (isset($_SESSION['id_usuario'])): ?>
 
             <?php if (($_SESSION['rol'] ?? '') === 'administrador'): ?>
-
                 <a href="<?php echo $base; ?>admin/index.php">
                     PANEL ADMIN
                 </a>
-
             <?php else: ?>
-
                 <a href="<?php echo $base; ?>cliente/perfil.php">
                     MI PERFIL
                 </a>
-
             <?php endif; ?>
 
             <a href="<?php echo $base; ?>cerrarSesion.php">
@@ -149,5 +138,4 @@ if (
         <?php endif; ?>
 
     </nav>
-
 </header>

@@ -18,10 +18,11 @@ if (session_status() === PHP_SESSION_NONE) {
     <title>Nosotros | Stellar CD</title>
 
     <link rel="stylesheet"
-          href="assets/css/style.css?v=21">
+          href="assets/css/style.css?v=16">
 
     <script src="assets/js/main.js" defer></script>
     <?php require_once __DIR__ . '/includes/analytics.php'; ?>
+    <link rel="stylesheet" href="assets/css/responsive.css?v=4">
 </head>
 
 

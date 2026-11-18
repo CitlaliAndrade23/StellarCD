@@ -135,7 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <!-- ESTILOS -->
     <link rel="stylesheet"
-          href="assets/css/style.css?v=12">
+          href="assets/css/style.css?v=15">
 
     <!-- JAVASCRIPT -->
     <script src="assets/js/main.js?v=2" defer></script>
