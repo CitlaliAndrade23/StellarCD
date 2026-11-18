@@ -3800,3 +3800,487 @@ nav a:hover {
         white-space: normal;
     }
 }
+
+
+/* ==========================================
+   STELLAR CD - AGREGAR PRODUCTO
+========================================== */
+
+.admin-form-contenedor {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 65px 25px 100px;
+}
+
+.admin-form-contenedor h1 {
+    font-size: clamp(30px, 5vw, 48px);
+    margin: 15px 0;
+}
+
+.admin-form-contenedor h1 span {
+    color: #ff5b99;
+}
+
+.admin-form-intro {
+    color: #c7c7d9;
+    margin-bottom: 35px;
+}
+
+.admin-form-tarjeta {
+    background: #23233a;
+    border-radius: 16px;
+    padding: 35px;
+}
+
+.admin-form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 22px;
+}
+
+.admin-campo {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin-bottom: 22px;
+}
+
+.admin-campo label {
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #ff82ae;
+}
+
+.admin-campo input,
+.admin-campo textarea {
+    width: 100%;
+    padding: 14px;
+    background: #151522;
+    border: 1px solid #41415f;
+    border-radius: 8px;
+    color: #ffffff;
+    font: inherit;
+    box-sizing: border-box;
+}
+
+.admin-campo textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.admin-campo input:focus,
+.admin-campo textarea:focus {
+    outline: 2px solid #ff5b99;
+    outline-offset: 1px;
+}
+
+.admin-check {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.admin-check input {
+    accent-color: #ff5b99;
+    width: 18px;
+    height: 18px;
+}
+
+.admin-boton-guardar {
+    padding: 16px 25px;
+    background: #ff5b99;
+    color: #151522;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.admin-boton-guardar:hover {
+    background: #ff82ae;
+}
+
+.admin-boton-guardar:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.admin-boton-cancelar {
+    color: #ff82ae;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+.admin-error {
+    padding: 15px;
+    margin-bottom: 25px;
+    background: #542c42;
+    color: #ffb4cc;
+    border-radius: 8px;
+}
+
+.admin-ayuda {
+    color: #c7c7d9;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+@media (max-width: 650px) {
+    .admin-form-contenedor {
+        padding: 40px 18px 70px;
+    }
+
+    .admin-form-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .admin-form-tarjeta {
+        padding: 22px;
+    }
+
+    .admin-boton-cancelar {
+        display: inline-block;
+        margin-top: 20px;
+        margin-left: 0;
+    }
+}
+
+
+/* =====================================
+   CATÁLOGO - ALINEACIÓN DE TARJETAS
+===================================== */
+
+#listaProductos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+    align-items: stretch;
+}
+
+#listaProductos .tarjeta {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: #202035;
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+#listaProductos .imagen-producto {
+    height: 220px;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+#listaProductos .imagen-producto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+#listaProductos .informacion {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 22px;
+}
+
+#listaProductos .informacion h3 {
+    line-height: 1.3;
+    min-height: 2.6em;
+    margin: 12px 0;
+}
+
+#listaProductos .informacion p {
+    line-height: 1.5;
+    margin-bottom: 0;
+}
+
+#listaProductos .informacion strong {
+    display: block;
+    margin-top: auto;
+    padding-top: 20px;
+    color: #ff5b99;
+    font-size: 22px;
+}
+
+#listaProductos .boton-agregar-carrito {
+    display: block;
+    width: 100%;
+    margin-top: 18px;
+}
+
+@media (max-width: 600px) {
+    #listaProductos {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =====================================
+   CORRECCIÓN FINAL - CATÁLOGO
+===================================== */
+
+#listaProductos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+    align-items: stretch;
+}
+
+#listaProductos .tarjeta {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+#listaProductos .informacion {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+#listaProductos .informacion strong {
+    margin-top: auto;
+    padding-top: 20px;
+}
+
+#listaProductos .boton-agregar-carrito {
+    margin-top: 18px;
+    width: 100%;
+}
+/* =====================================
+   FOOTER STELLAR CD - DISEÑO DEFINITIVO
+===================================== */
+
+.stellar-footer {
+    background: #F7C9DC;
+    color: #25203F;
+    padding: 65px 7% 25px;
+}
+
+.stellar-footer .footer-contenido {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 45px;
+    max-width: 1250px;
+    margin: 0 auto 55px;
+}
+
+.stellar-footer .footer-marca h2 {
+    color: #E94F91;
+    font-size: 36px;
+    margin: 0 0 18px;
+}
+
+.stellar-footer .footer-marca h2 span {
+    color: #E94F91;
+}
+
+.stellar-footer .footer-eslogan {
+    font-size: 15px;
+    font-weight: bold;
+    color: #25203F;
+}
+
+.stellar-footer .footer-descripcion {
+    max-width: 270px;
+    font-size: 16px;
+    line-height: 1.8;
+    color: #25203F;
+}
+
+.stellar-footer .footer-decoracion {
+    color: #E94F91;
+    font-size: 22px;
+    margin-top: 25px;
+}
+
+.stellar-footer .footer-columna {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+}
+
+.stellar-footer .footer-columna h3 {
+    color: #E94F91;
+    font-size: 16px;
+    margin: 0 0 10px;
+}
+
+.stellar-footer .footer-columna a {
+    display: block;
+    color: #25203F;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.stellar-footer .footer-columna a:hover {
+    color: #E94F91;
+}
+
+.stellar-footer .footer-inferior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    max-width: 1250px;
+    margin: 0 auto;
+    padding-top: 25px;
+    border-top: 1px solid #25203F44;
+}
+
+.stellar-footer .footer-inferior p {
+    margin: 0;
+    color: #25203F;
+    font-size: 13px;
+}
+
+@media (max-width: 950px) {
+    .stellar-footer .footer-contenido {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .stellar-footer {
+        padding: 45px 6% 25px;
+    }
+
+    .stellar-footer .footer-contenido {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .stellar-footer .footer-inferior {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+
+/* =====================================
+   PANEL ADMINISTRATIVO - STELLAR CD
+===================================== */
+
+.admin-contenedor {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 70px 25px 100px;
+}
+
+.admin-encabezado {
+    margin-bottom: 45px;
+}
+
+.admin-encabezado h1 {
+    font-size: clamp(32px, 5vw, 56px);
+    margin: 15px 0;
+}
+
+.admin-encabezado h1 span {
+    color: #ff5b99;
+}
+
+.admin-encabezado p {
+    color: #c7c7d9;
+    line-height: 1.7;
+}
+
+/* ESTADÍSTICAS */
+
+.admin-estadisticas {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    margin-bottom: 55px;
+}
+
+.admin-tarjeta {
+    background: #23233a;
+    border-radius: 16px;
+    padding: 30px;
+}
+
+.admin-tarjeta h2 {
+    font-size: 14px;
+    color: #c7c7d9;
+    margin-bottom: 20px;
+}
+
+.admin-tarjeta strong {
+    display: block;
+    font-size: 48px;
+    color: #ff5b99;
+}
+
+/* GESTIÓN DE PRODUCTOS */
+
+.admin-seccion h2 {
+    font-size: 28px;
+    margin-bottom: 25px;
+}
+
+.admin-acciones {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.admin-accion {
+    display: block;
+    background: #23233a;
+    padding: 35px;
+    border-radius: 16px;
+    color: #fff;
+    text-decoration: none;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.admin-accion:hover {
+    transform: translateY(-4px);
+    background: #30304b;
+}
+
+.admin-accion span {
+    font-size: 32px;
+    color: #ff5b99;
+}
+
+.admin-accion h3 {
+    margin: 15px 0 10px;
+    color: #fff;
+}
+
+.admin-accion p {
+    color: #c7c7d9;
+    line-height: 1.7;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+
+    .admin-contenedor {
+        padding: 45px 20px 70px;
+    }
+
+    .admin-estadisticas,
+    .admin-acciones {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-tarjeta,
+    .admin-accion {
+        padding: 25px;
+    }
+
+    .admin-seccion h2 {
+        font-size: 24px;
+    }
+}

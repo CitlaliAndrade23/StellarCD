@@ -28,25 +28,13 @@ if (($_SESSION['rol'] ?? '') !== 'administrador') {
 
 require_once __DIR__ . '/../config/conexion.php';
 
-// Token para proteger el formulario
+// Token de seguridad
 if (empty($_SESSION['csrf_admin'])) {
     $_SESSION['csrf_admin'] = bin2hex(random_bytes(32));
 }
 
 // =====================================
-// 4. CONSULTAR CATEGORÍAS
-// =====================================
-
-$consulta = $conexion->query(
-    "SELECT id_categoria, nombre
-     FROM categorias
-     ORDER BY nombre ASC"
-);
-
-$categorias = $consulta->fetchAll(PDO::FETCH_ASSOC);
-
-// =====================================
-// 5. VARIABLES DEL FORMULARIO
+// 4. VARIABLES DEL FORMULARIO
 // =====================================
 
 $error = '';
@@ -54,8 +42,39 @@ $error = '';
 $nombre = '';
 $descripcion = '';
 $precio = '';
-$idCategoria = '';
 $disponible = 1;
+
+$idCategoria = false;
+
+// =====================================
+// 5. OBTENER CATEGORÍA MUSICALES
+// =====================================
+
+try {
+
+    $consultaCategoria = $conexion->prepare(
+        "SELECT id_categoria
+         FROM categorias
+         WHERE nombre = :nombre
+         LIMIT 1"
+    );
+
+    $consultaCategoria->execute([
+        'nombre' => 'Musicales'
+    ]);
+
+    $idCategoria = $consultaCategoria->fetchColumn();
+
+    if ($idCategoria === false) {
+        $error = 'No existe la categoría Musicales en la base de datos.';
+    }
+
+} catch (PDOException $e) {
+
+    error_log($e->getMessage());
+
+    $error = 'No se pudo consultar la categoría del producto.';
+}
 
 // =====================================
 // 6. GUARDAR PRODUCTO
@@ -66,53 +85,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nombre = trim($_POST['nombre'] ?? '');
     $descripcion = trim($_POST['descripcion'] ?? '');
     $precio = trim($_POST['precio'] ?? '');
-    $idCategoria = $_POST['id_categoria'] ?? '';
+
     $disponible = isset($_POST['disponible']) ? 1 : 0;
 
     $imagenNombre = null;
     $imagenRuta = null;
 
-    if (
+    // VALIDACIONES
+
+    if ($error !== '') {
+
+        // Conservar el error de la categoría.
+
+    } elseif (
         !isset($_POST['csrf_token']) ||
+        !is_string($_POST['csrf_token']) ||
         !hash_equals(
             $_SESSION['csrf_admin'],
-            (string) $_POST['csrf_token']
+            $_POST['csrf_token']
         )
     ) {
+
         $error = 'Solicitud no válida. Actualiza la página.';
 
-    } elseif ($nombre === '' || mb_strlen($nombre) > 150) {
+    } elseif (
+        $nombre === '' ||
+        mb_strlen($nombre) > 150
+    ) {
 
         $error = 'Ingresa un nombre válido (máximo 150 caracteres).';
 
-    } elseif ($precio === '' ||
-              !preg_match('/^\d{1,8}(\.\d{1,2})?$/', $precio) ||
-              (float) $precio <= 0) {
-
-        $error = 'Ingresa un precio válido mayor a cero.';
-
     } elseif (
-        filter_var($idCategoria, FILTER_VALIDATE_INT) === false ||
-        (int) $idCategoria <= 0
+        $precio === '' ||
+        !preg_match('/^\d{1,8}(\.\d{1,2})?$/', $precio) ||
+        (float) $precio <= 0
     ) {
 
-        $error = 'Selecciona una categoría válida.';
-
-    } else {
-
-        // Comprobar que la categoría exista
-        $consultaCategoria = $conexion->prepare(
-            "SELECT COUNT(*) FROM categorias
-             WHERE id_categoria = :id_categoria"
-        );
-
-        $consultaCategoria->execute([
-            'id_categoria' => (int) $idCategoria
-        ]);
-
-        if (!$consultaCategoria->fetchColumn()) {
-            $error = 'La categoría seleccionada no existe.';
-        }
+        $error = 'Ingresa un precio válido mayor a cero.';
     }
 
     // =====================================
@@ -149,7 +158,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     $error = 'Solo se permiten imágenes JPG, PNG o WebP.';
 
-                } elseif (@getimagesize($archivo['tmp_name']) === false) {
+                } elseif (
+                    @getimagesize($archivo['tmp_name']) === false
+                ) {
 
                     $error = 'El archivo no es una imagen válida.';
 
@@ -164,8 +175,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     $directorio = __DIR__ . '/../assets/img/';
 
-                    if (!is_dir($directorio) ||
-                        !is_writable($directorio)) {
+                    if (
+                        !is_dir($directorio) ||
+                        !is_writable($directorio)
+                    ) {
 
                         $error = 'La carpeta de imágenes no está disponible.';
 
@@ -212,14 +225,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'disponible' => $disponible
             ]);
 
-            // Evitar registros duplicados al actualizar
             header('Location: productos.php?creado=1');
             exit;
 
         } catch (PDOException $e) {
 
-            // Eliminar la imagen si no se guardó el producto
-            if ($imagenRuta !== null && is_file($imagenRuta)) {
+            error_log($e->getMessage());
+
+            if (
+                $imagenRuta !== null &&
+                is_file($imagenRuta)
+            ) {
                 unlink($imagenRuta);
             }
 
@@ -228,7 +244,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Evitar mostrar contenido no seguro
+// =====================================
+// 9. FUNCIÓN PARA ESCAPAR TEXTO
+// =====================================
+
 function escapar($valor) {
     return htmlspecialchars(
         (string) $valor,
@@ -250,149 +269,13 @@ function escapar($valor) {
     <title>Agregar producto | Stellar CD</title>
 
     <link rel="stylesheet"
-          href="../assets/css/style.css?v=11">
+          href="../assets/css/style.css?v=13">
 
-    <style>
-        .admin-form-contenedor {
-            max-width: 850px;
-            margin: 0 auto;
-            padding: 65px 25px 100px;
-        }
-
-        .admin-form-contenedor h1 {
-            font-size: clamp(30px, 5vw, 48px);
-            margin: 15px 0;
-        }
-
-        .admin-form-contenedor h1 span {
-            color: #ff5b99;
-        }
-
-        .admin-form-intro {
-            color: #c7c7d9;
-            margin-bottom: 35px;
-        }
-
-        .admin-form-tarjeta {
-            background: #23233a;
-            border-radius: 16px;
-            padding: 35px;
-        }
-
-        .admin-form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 22px;
-        }
-
-        .admin-campo {
-            display: flex;
-            flex-direction: column;
-            gap: 9px;
-            margin-bottom: 22px;
-        }
-
-        .admin-campo label {
-            font-size: 12px;
-            font-weight: bold;
-            letter-spacing: 1px;
-            color: #ff82ae;
-        }
-
-        .admin-campo input,
-        .admin-campo textarea,
-        .admin-campo select {
-            width: 100%;
-            padding: 14px;
-            background: #151522;
-            border: 1px solid #41415f;
-            border-radius: 8px;
-            color: white;
-            font: inherit;
-            box-sizing: border-box;
-        }
-
-        .admin-campo textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        .admin-campo input:focus,
-        .admin-campo textarea:focus,
-        .admin-campo select:focus {
-            outline: 2px solid #ff5b99;
-            outline-offset: 1px;
-        }
-
-        .admin-check {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 30px;
-        }
-
-        .admin-check input {
-            accent-color: #ff5b99;
-            width: 18px;
-            height: 18px;
-        }
-
-        .admin-boton-guardar {
-            padding: 16px 25px;
-            background: #ff5b99;
-            color: #151522;
-            border: none;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .admin-boton-guardar:hover {
-            background: #ff82ae;
-        }
-
-        .admin-boton-cancelar {
-            color: #ff82ae;
-            text-decoration: none;
-            margin-left: 20px;
-        }
-
-        .admin-error {
-            padding: 15px;
-            margin-bottom: 25px;
-            background: #542c42;
-            color: #ffb4cc;
-            border-radius: 8px;
-        }
-
-        .admin-ayuda {
-            color: #c7c7d9;
-            font-size: 12px;
-            margin-top: 5px;
-        }
-
-        @media (max-width: 650px) {
-            .admin-form-grid {
-                grid-template-columns: 1fr;
-                gap: 0;
-            }
-
-            .admin-form-tarjeta {
-                padding: 22px;
-            }
-
-            .admin-boton-cancelar {
-                display: inline-block;
-                margin-top: 20px;
-                margin-left: 0;
-            }
-        }
-    </style>
+    
 </head>
 
 <body>
 
-<!-- HEADER COMPARTIDO -->
 <?php require __DIR__ . '/../includes/header.php'; ?>
 
 <main class="admin-form-contenedor">
@@ -428,9 +311,12 @@ function escapar($valor) {
             value="<?php echo escapar($_SESSION['csrf_admin']); ?>">
 
         <!-- NOMBRE -->
+
         <div class="admin-campo">
 
-            <label for="nombre">NOMBRE DEL PRODUCTO</label>
+            <label for="nombre">
+                NOMBRE DEL PRODUCTO
+            </label>
 
             <input
                 type="text"
@@ -444,9 +330,12 @@ function escapar($valor) {
         </div>
 
         <!-- DESCRIPCIÓN -->
+
         <div class="admin-campo">
 
-            <label for="descripcion">DESCRIPCIÓN</label>
+            <label for="descripcion">
+                DESCRIPCIÓN
+            </label>
 
             <textarea
                 id="descripcion"
@@ -457,12 +346,15 @@ function escapar($valor) {
 
         </div>
 
+        <!-- PRECIO -->
+
         <div class="admin-form-grid">
 
-            <!-- PRECIO -->
             <div class="admin-campo">
 
-                <label for="precio">PRECIO (MXN)</label>
+                <label for="precio">
+                    PRECIO (MXN)
+                </label>
 
                 <input
                     type="number"
@@ -476,45 +368,15 @@ function escapar($valor) {
 
             </div>
 
-            <!-- CATEGORÍA -->
-            <div class="admin-campo">
-
-                <label for="id_categoria">CATEGORÍA</label>
-
-                <select
-                    id="id_categoria"
-                    name="id_categoria"
-                    required>
-
-                    <option value="">Selecciona una categoría</option>
-
-                    <?php foreach ($categorias as $categoria): ?>
-
-                        <option
-                            value="<?php echo (int) $categoria['id_categoria']; ?>"
-                            <?php
-                                echo (string) $idCategoria ===
-                                     (string) $categoria['id_categoria']
-                                     ? 'selected'
-                                     : '';
-                            ?>>
-
-                            <?php echo escapar($categoria['nombre']); ?>
-
-                        </option>
-
-                    <?php endforeach; ?>
-
-                </select>
-
-            </div>
-
         </div>
 
         <!-- IMAGEN -->
+
         <div class="admin-campo">
 
-            <label for="imagen">IMAGEN DEL PRODUCTO</label>
+            <label for="imagen">
+                IMAGEN DEL PRODUCTO
+            </label>
 
             <input
                 type="file"
@@ -530,6 +392,7 @@ function escapar($valor) {
         </div>
 
         <!-- DISPONIBILIDAD -->
+
         <div class="admin-check">
 
             <input
@@ -546,16 +409,21 @@ function escapar($valor) {
         </div>
 
         <!-- BOTONES -->
+
         <button
             type="submit"
-            class="admin-boton-guardar">
+            class="admin-boton-guardar"
+            <?php echo $idCategoria === false ? 'disabled' : ''; ?>>
 
             GUARDAR PRODUCTO ↗
 
         </button>
 
-        <a href="productos.php" class="admin-boton-cancelar">
+        <a href="productos.php"
+           class="admin-boton-cancelar">
+
             CANCELAR
+
         </a>
 
     </form>

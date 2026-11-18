@@ -32,11 +32,11 @@ if (empty($_SESSION['csrf_carrito'])) {
 
     <!-- ESTILOS -->
     <link rel="stylesheet"
-          href="assets/css/style.css?v=5">
+          href="assets/css/style.css?v=9">
 
     <!-- JAVASCRIPT -->
     <script src="assets/js/main.js" defer></script>
-    <script src="assets/js/catalogo.js?v=4" defer></script>
+    <script src="assets/js/catalogo.js?v=5" defer></script>
 
 </head>
 
