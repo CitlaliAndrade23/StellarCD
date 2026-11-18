@@ -37,6 +37,7 @@ if (empty($_SESSION['csrf_carrito'])) {
     <!-- JAVASCRIPT -->
     <script src="assets/js/main.js" defer></script>
     <script src="assets/js/catalogo.js?v=5" defer></script>
+    <?php require_once __DIR__ . '/includes/analytics.php'; ?>
 
 </head>
 

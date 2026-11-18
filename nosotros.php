@@ -21,7 +21,10 @@ if (session_status() === PHP_SESSION_NONE) {
           href="assets/css/style.css?v=21">
 
     <script src="assets/js/main.js" defer></script>
+    <?php require_once __DIR__ . '/includes/analytics.php'; ?>
 </head>
+
+
 
 <body class="pagina-nosotros">
 

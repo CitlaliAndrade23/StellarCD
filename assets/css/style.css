@@ -4284,3 +4284,128 @@ nav a:hover {
         font-size: 24px;
     }
 }
+
+/* =====================================
+   HERO - LLAVERO BTS
+===================================== */
+
+.hero-llavero {
+    display: block;
+    width: 100%;
+    max-width: 440px;
+    height: auto;
+    object-fit: contain;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.25));
+}
+
+/* Decoraciones encima de la imagen */
+
+.hero-grafico .estrella,
+.hero-grafico .hero-sticker {
+    z-index: 2;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+    .hero-llavero {
+        max-width: 320px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-llavero {
+        max-width: 260px;
+    }
+}
+
+/* AJUSTES DEL LLAVERO EN EL HERO */
+
+.pagina-inicio .hero-grafico {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 0;
+}
+
+.pagina-inicio .hero-llavero {
+    width: 90%;
+    max-width: 420px;
+    height: auto;
+    object-fit: contain;
+    position: relative;
+    z-index: 1;
+}
+
+/* Decoraciones */
+
+.pagina-inicio .estrella-uno {
+    top: 12%;
+    left: 5%;
+}
+
+.pagina-inicio .estrella-dos {
+    bottom: 12%;
+    right: 5%;
+}
+
+.pagina-inicio .hero-sticker {
+    top: 8%;
+    right: 2%;
+}
+
+/* Adaptación a celulares */
+
+@media (max-width: 768px) {
+    .pagina-inicio .hero-llavero {
+        width: 85%;
+        max-width: 340px;
+    }
+}
+
+/* AJUSTES DEL HERO PRINCIPAL */
+
+.pagina-inicio .hero h1 {
+    font-size: clamp(42px, 5.5vw, 76px);
+    line-height: 1.02;
+    letter-spacing: -2px;
+}
+
+/* Reducir la imagen del llavero */
+
+.pagina-inicio .hero-llavero {
+    width: 85%;
+    max-width: 380px;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Reducir el espacio vertical */
+
+.pagina-inicio .hero {
+    padding-top: 65px;
+    padding-bottom: 65px;
+}
+
+/* Ajustes para celulares */
+
+@media (max-width: 768px) {
+    .pagina-inicio .hero h1 {
+        font-size: clamp(36px, 8vw, 54px);
+        letter-spacing: -1px;
+    }
+
+    .pagina-inicio .hero-llavero {
+        width: 85%;
+        max-width: 300px;
+    }
+
+    .pagina-inicio .hero {
+        padding-top: 45px;
+        padding-bottom: 45px;
+    }
+}

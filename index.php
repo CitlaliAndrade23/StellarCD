@@ -47,9 +47,23 @@ function escapar($texto)
     <title>Stellar CD | Tu música, tu historia</title>
 
     <link rel="stylesheet"
-          href="assets/css/style.css?v=10">
+          href="assets/css/style.css?v=13">
 
     <script src="assets/js/main.js" defer></script>
+
+    <!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1XZ2S2MXZD"></script>
+
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'G-1XZ2S2MXZD');
+</script>
 </head>
 
 <body class="pagina-inicio">
@@ -87,18 +101,19 @@ function escapar($texto)
 
         </div>
 
-        <div class="hero-grafico" aria-hidden="true">
+        <div class="hero-grafico">
 
-            <div class="cd-decorativo">
-                <div class="cd-centro"></div>
-            </div>
+    <img
+        src="assets/img/llavero1.png"
+        alt="Llavero mini CD personalizado de BTS"
+        class="hero-llavero"
+    >
 
-            <span class="estrella estrella-uno">✳</span>
-            <span class="estrella estrella-dos">✦</span>
-            <span class="hero-sticker">MINI CD!</span>
+    <span class="estrella estrella-uno" aria-hidden="true">✳</span>
+    <span class="estrella estrella-dos" aria-hidden="true">✦</span>
+    <span class="hero-sticker">MINI CD!</span>
 
-        </div>
-
+</div>
     </section>
 
 
@@ -485,9 +500,8 @@ function escapar($texto)
             </h2>
 
             <p>
-                Conoce la ubicación del Instituto de
-                Arquitectura, Diseño y Arte de la
-                Universidad Autónoma de Ciudad Juárez.
+                Conoce la ubicación de nuestro local
+                y descubre como llegar.
             </p>
 
             <a href="ubicacion.php"

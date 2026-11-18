@@ -324,6 +324,7 @@ function escaparCarrito($valor) {
 
     <!-- JAVASCRIPT DEL CARRITO -->
    <script src="assets/js/carrito.js?v=4" defer></script>
+   <?php require_once __DIR__ . '/includes/analytics.php'; ?>
 
 </head>
 

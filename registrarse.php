@@ -172,6 +172,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           href="assets/css/style.css?v=13">
 
     <script src="assets/js/main.js?v=4" defer></script>
+    <?php require_once __DIR__ . '/includes/analytics.php'; ?>
 
 </head>
 

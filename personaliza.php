@@ -25,6 +25,7 @@ if (empty($_SESSION['csrf_personaliza'])) {
 
     <script src="assets/js/main.js" defer></script>
     <script src="assets/js/personaliza.js?v=1" defer></script>
+    <?php require_once __DIR__ . '/includes/analytics.php'; ?>
 
 </head>
 

@@ -18,6 +18,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
     <script src="assets/js/main.js?v=2" defer></script>
     <script src="assets/js/ubicacion.js" defer></script>
+    <?php require_once __DIR__ . '/includes/analytics.php'; ?>
 </head>
 
 <body>

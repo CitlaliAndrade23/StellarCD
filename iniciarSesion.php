@@ -1,10 +1,23 @@
 
 <?php
-session_start();
+// =====================================
+// 1. INICIAR SESIÓN
+// =====================================
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// =====================================
+// 2. CONEXIÓN A MYSQL
+// =====================================
 
 require_once __DIR__ . '/config/conexion.php';
 
-// Si el usuario ya inició sesión, redirigirlo
+// =====================================
+// 3. VERIFICAR SESIÓN EXISTENTE
+// =====================================
+
 if (isset($_SESSION['id_usuario'])) {
 
     if (($_SESSION['rol'] ?? '') === 'administrador') {
@@ -16,10 +29,17 @@ if (isset($_SESSION['id_usuario'])) {
     exit;
 }
 
+// =====================================
+// 4. VARIABLES
+// =====================================
+
 $error = '';
 $correo = '';
 
-// Procesar el formulario
+// =====================================
+// 5. PROCESAR FORMULARIO
+// =====================================
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $correo = trim($_POST['correo'] ?? '');
@@ -110,9 +130,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <title>Iniciar sesión | Stellar CD</title>
 
-    <link rel="stylesheet"
-          href="assets/css/style.css?v=8">
+    <!-- GOOGLE ANALYTICS -->
+    <?php require_once __DIR__ . '/includes/analytics.php'; ?>
 
+    <!-- ESTILOS -->
+    <link rel="stylesheet"
+          href="assets/css/style.css?v=12">
+
+    <!-- JAVASCRIPT -->
     <script src="assets/js/main.js?v=2" defer></script>
 
 </head>
@@ -288,6 +313,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </section>
 
 </main>
+
+<!-- =====================================
+     FOOTER COMPARTIDO
+===================================== -->
 
 <?php require __DIR__ . '/includes/footer.php'; ?>
 
